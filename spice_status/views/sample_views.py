@@ -13,6 +13,6 @@ def add():
     form = SampleForm()
     if form.validate_on_submit():
         print('sent')
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.home'))
 
     return render_template('add.html', form=form)

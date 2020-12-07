@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
+
 db = SQLAlchemy()
 login_manager = LoginManager()
 
@@ -21,9 +22,11 @@ def create_app():
     from .views import bp_main
     from .views import bp_sample
     from .views import bp_auth
+    from .views.input_data_views import bp_input
     spice_status.register_blueprint(bp_main)
     spice_status.register_blueprint(bp_sample)
     spice_status.register_blueprint(bp_auth)
+    spice_status.register_blueprint(bp_input)
     db.init_app(spice_status)
     Migrate(spice_status, db)
 

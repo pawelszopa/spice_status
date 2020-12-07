@@ -8,14 +8,45 @@
         <h1>Raw database</h1>
     </header>
     <section>
-        <h2>Recently added</h2>
-        {% if new_bookmarks.count() > 0 %}
-            {% for bm in new_bookmarks %}
-            <li><a href="{{ bm.url }}">{{ bm.description }}</a></li>
-            {% endfor %}
+        {% if raw_data.count() > 0 %}
+        {% for rd in raw_data %}
+            <li>{{ rd.cw }}</li>
+        {% endfor %}
         {% else %}
-            No bookmarks yet.
+            No raw_data yet.
         {% endif %}
+
+        {% if users.count() > 0 %}
+        <hr>
+        <h3>Users</h3>
+
+        <table>
+     <tr>
+    <th>id</th>
+    <th>username</th>
+    <th>email</th>
+    <th>password_hash</th>
+         </tr>
+
+
+        {% for user in users %}
+         <tr>
+        <td>{{ user.id }}</td>
+         <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.password_hash }}</td>
+         </tr>
+
+        {% endfor %}
+            </table>
+        {% else %}
+            No users yet.
+        {% endif %}
+
+
+
+
+
 
     </section>
 </article>

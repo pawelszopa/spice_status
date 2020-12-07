@@ -1,4 +1,5 @@
 from flask_login import UserMixin
+from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from spice_status import db
@@ -27,3 +28,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'<User {self.username}>'
+
+    @staticmethod
+    def all_of_users():
+        return User.query.order_by(desc(User.id))

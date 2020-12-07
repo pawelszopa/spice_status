@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block title %} Add Metrics {% endblock %}
+{% block content %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+  <div class="form-group">
+      {{ form.total_shrd_REQ.label }}
+      {{ form.total_shrd_REQ (class="form-control", placeholder="Total ShRD") }}
+  </div>
+  <div class="form-group">
+      {{ form.total_open_shrd.label }}
+      {{ form.total_open_shrd (class="form-control", placeholder="Total Open ShRD") }}
+  </div>
+  <div class="form-group">
+      {{ form.total_sys_req.label }}
+      {{ form.total_sys_req (class="form-control", placeholder="Total SyS REq") }}
+  </div>
+  <div class="form-group">
+      {{ form.Total_sys_req_approved.label }}
+      {{ form.Total_sys_req_approved (class="form-control", placeholder="Total SyS REQ approved") }}
+  </div>
+    {{ form.submit(class="btn btn-dark") }}
+</form>
+{% endblock %}
