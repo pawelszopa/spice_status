@@ -1,0 +1,4 @@
+*.pyc
+.idea
+migrations
+spice_status/project_name.db
