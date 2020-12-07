@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% block title %} Raw Data {% endblock %}
+
+
+{% block content %}
+<article>
+    <header>
+        <h1>Raw database</h1>
+    </header>
+    <section>
+        <h2>Recently added</h2>
+        {% if new_bookmarks.count() > 0 %}
+            {% for bm in new_bookmarks %}
+            <li><a href="{{ bm.url }}">{{ bm.description }}</a></li>
+            {% endfor %}
+        {% else %}
+            No bookmarks yet.
+        {% endif %}
+
+    </section>
+</article>
+{% endblock %}

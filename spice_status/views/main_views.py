@@ -14,3 +14,8 @@ def load_user(user_id):
 @bp_main.route('/')
 def home():
     return render_template('index.html')
+
+
+@bp_main.route('/raw', methods=['GET'])
+def raw():
+    return render_template('raw.html')
