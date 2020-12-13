@@ -1,11 +1,13 @@
+from datetime import datetime
+
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms import IntegerField, SubmitField, StringField
+from wtforms.validators import InputRequired
 
 
 class WorkBookForm(FlaskForm):
-    total_shrd_REQ = IntegerField('total_shrd_REQ', validators=[DataRequired()])
-    total_open_shrd = IntegerField('total_open_shrd', validators=[DataRequired()])
-    total_sys_req = IntegerField('total_sys_req', validators=[DataRequired()])
-    Total_sys_req_approved = IntegerField('Total_sys_req_approved', validators=[DataRequired()])
+    cw = StringField('Calendar Week leave empty to set current',
+                     default=f'{datetime.now().isocalendar()[0]}CW{datetime.now().isocalendar()[1]}')
+    total_client_req = IntegerField('total_client_req', validators=[InputRequired()])
+    total_client_req_approved = IntegerField('total_client_req_approved', validators=[InputRequired()])
     submit = SubmitField('Send')

@@ -1,0 +1,16 @@
+{% macro form_field(field) -%}
+    <div class="col-mb-3">
+
+        <div class="input-group">
+
+                {{ field(class="form-control", placeholder=field.label.text)}}
+                {% for error in field.errors %}
+                {{ error }}
+                {% endfor %}
+
+            </div>
+
+    </div>
+
+
+{%- endmacro %}

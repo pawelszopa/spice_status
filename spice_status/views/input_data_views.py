@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, url_for
 from werkzeug.utils import redirect
-
 from .. import db
 from ..forms.workbook_form import WorkBookForm
 from ..models.workbook_models import Workbook
@@ -12,11 +11,10 @@ bp_input = Blueprint("input", __name__, url_prefix='/')
 def metrics():
     form = WorkBookForm()
     if form.validate_on_submit():
-        workbook = Workbook(total_shrd_REQ=form.total_shrd_REQ.data, total_open_shrd=form.total_open_shrd.data,
-                            total_sys_req=form.total_sys_req.data,
-                            Total_sys_req_approved=form.Total_sys_req_approved.data)
+        workbook = Workbook(cw=form.cw.data, total_client_req=form.total_client_req.data,
+                            total_client_req_approved=form.total_client_req_approved.data)
         db.session.add(workbook)
         db.session.commit()
-        return redirect(url_for('main.home'))
 
+        return redirect(url_for('main.home'))
     return render_template('data_add.html', form=form)

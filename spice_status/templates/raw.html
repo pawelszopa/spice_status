@@ -1,19 +1,33 @@
 {% extends "_base.html" %}
 {% block title %} Raw Data {% endblock %}
 
-
 {% block content %}
 <article>
     <header>
-        <h1>Raw database</h1>
+      <center>  <h1>Raw database</h1> </center>
     </header>
     <section>
         {% if raw_data.count() > 0 %}
-        {% for rd in raw_data %}
-            <li>{{ rd.cw }}</li>
+        <table>
+            <tr>
+                <th>cw</th>
+                <th>total_shrd_REQ</th>
+                <th>total_open_shrd</th>
+                <th>total_sys_req</th>
+                <th>Total_sys_req_approved</th>
+            </tr>
+            {% for rd in raw_data %}
+            <tr>
+                <td>{{ rd.cw }}</td>
+                <td>{{ rd.total_shrd_REQ }}</td>
+                <td>{{ rd.total_open_shrd }}</td>
+                <td>{{ rd.total_sys_req }}</td>
+                <td>{{ rd.Total_sys_req_approved }}</td>
+            </tr>
+        </table>
         {% endfor %}
         {% else %}
-            No raw_data yet.
+        No raw_data yet.
         {% endif %}
 
         {% if users.count() > 0 %}
@@ -21,31 +35,27 @@
         <h3>Users</h3>
 
         <table>
-     <tr>
-    <th>id</th>
-    <th>username</th>
-    <th>email</th>
-    <th>password_hash</th>
-         </tr>
+            <tr>
+                <th>id</th>
+                <th>username</th>
+                <th>email</th>
+                <th>password_hash</th>
+            </tr>
 
 
-        {% for user in users %}
-         <tr>
-        <td>{{ user.id }}</td>
-         <td>{{ user.username }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.password_hash }}</td>
-         </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.password_hash }}</td>
+            </tr>
 
-        {% endfor %}
-            </table>
+            {% endfor %}
+        </table>
         {% else %}
-            No users yet.
+        No users yet.
         {% endif %}
-
-
-
-
 
 
     </section>
