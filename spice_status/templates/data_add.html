@@ -1,18 +1,14 @@
 {% extends "_base.html" %}
+{% from "html_macros.html" import form_field %}
 
 {% block title %} Add Metrics {% endblock %}
 {% block content %}
 
         <form action="" method="post">
-
-                {{ form.cw.label }}
-                {{ form.cw }}
-
-                {{ form.total_client_req.label }}
-                {{ form.total_client_req }}
-
-                {{ form.total_client_req_approved.label }}
-                {{ form.total_client_req_approved }}
+                {{ form.csrf_token }}
+                {{ form_field(form.cw) }}
+                {{ form_field(form.total_client_req)}}
+                {{ form_field(form.total_client_req_approved) }}
                 {{ form.submit }}
         </form>
 
