@@ -10,9 +10,9 @@ bp_input = Blueprint("input", __name__, url_prefix='/')
 @bp_input.route('/metrics', methods=["GET", "POST"])
 def metrics():
     form = WorkBookForm()
-    print(form.errors)
+
     if form.validate_on_submit():
-        print(form.errors)
+
         workbook = Workbook(cw=form.cw.data, total_client_req=form.total_client_req.data,
                             total_client_req_approved=form.total_client_req_approved.data)
         db.session.add(workbook)
