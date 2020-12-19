@@ -19,5 +19,6 @@ Info about project
 
 9. Production Gate
 
+10. home page
 
 
