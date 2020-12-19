@@ -7,6 +7,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 
+
 db = SQLAlchemy()
 login_manager = LoginManager()
 
@@ -20,13 +21,14 @@ def create_app():
     spice_status.config["SECRET_KEY"] = b'\x18\xff`\x18T\xe7\x88\xb7\xbdh\x163\xe1\x823\x85'
 
     from .views import bp_main
-
+    from .views import bp_project
     from .views import bp_auth
     from .views.input_data_views import bp_input
     spice_status.register_blueprint(bp_main)
 
     spice_status.register_blueprint(bp_auth)
     spice_status.register_blueprint(bp_input)
+    spice_status.register_blueprint(bp_project)
     db.init_app(spice_status)
     Migrate(spice_status, db)
 
