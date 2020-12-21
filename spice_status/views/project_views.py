@@ -22,9 +22,6 @@ def define_new_project():
                           gate_4=project_form.gate_4.data,
                           sop=project_form.sop.data,
                           spice_level=project_form.spice_level.data,
-                          risks=project_form.risks.data,
-                          low_issues=project_form.low_issues.data,
-                          high_issues=project_form.high_issues.data
                           )
 
         db.session.add(project)

@@ -2,7 +2,7 @@
 {% from "html_macros.html" import form_field %}
 {% block content %}
 <form action="" method="post">
-     {{ project.csrf_token }}
+     {{ project.hidden_tag() }}
 
      {{form_field(project.start_date) }}
      {{form_field(project.end_date) }}

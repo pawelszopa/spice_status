@@ -24,7 +24,8 @@ class Documents(db.Model):
     test_strategy = db.Column(db.String)
 
 
-
+def get_project():
+    return Project.query.first()
 
 
 

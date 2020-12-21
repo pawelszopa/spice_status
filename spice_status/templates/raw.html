@@ -12,18 +12,16 @@
         <table>
             <tr>
                 <th>cw</th>
-                <th>total_shrd_REQ</th>
-                <th>total_open_shrd</th>
-                <th>total_sys_req</th>
-                <th>Total_sys_req_approved</th>
+                <th>total_client_req</th>
+                <th>total_client_req_approved</th>
+
             </tr>
             {% for rd in raw_data %}
             <tr>
                 <td>{{ rd.cw }}</td>
-                <td>{{ rd.total_shrd_REQ }}</td>
-                <td>{{ rd.total_open_shrd }}</td>
-                <td>{{ rd.total_sys_req }}</td>
-                <td>{{ rd.Total_sys_req_approved }}</td>
+                <td>{{ rd.total_client_req }}</td>
+                <td>{{ rd.total_client_req_approved }}</td>
+
             </tr>
         </table>
         {% endfor %}

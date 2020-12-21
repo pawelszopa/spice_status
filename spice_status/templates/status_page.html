@@ -1,6 +1,80 @@
 {% extends "_base.html"%}
+{% from "html_macros.html" import form_field %}
+{% block content %}
+<h2>
+    <center> Project status   </center>
+</h2>
 
-{% block content }
+<li>Project Name: {{ project.name }}</li>
+<li>Start Date: {{ project.start_date }}</li>
+<li>End Date: {{ project.end_date }}</li>
+<li>Gate 1: {{ project.gate_1 }}</li>
+<li>Gate 2 {{ project.gate_2 }}</li>
+<li>Gate 3: {{ project.gate_3 }}</li>
+<li>Gate 4: {{ project.gate_4 }}</li>
+<li>Start of production: {{ project.sop }}</li>
+<li>Spice Level: {{ project.spice_level }}</li>
+<br>
+
+<br>
+
+
+
+<table>
+    <tr>
+        Issue type low
+        <td>
+            {% for item in low %}
+            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            {% endfor %}
+        </td>
+    </tr>
+
+</table>
+<table>
+    <tr>
+        Issue type mid
+        <td>
+            {% for item in mid %}
+            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            {% endfor %}
+        </td>
+    </tr>
+
+</table>
+<table>
+    <tr>
+        Issue type high
+        <td>
+            {% for item in high %}
+            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            {% endfor %}
+        </td>
+    </tr>
+
+</table>
+<table>
+    <tr>
+        Issue type escalated
+        <td>
+            {% for item in esca %}
+            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            {% endfor %}
+        </td>
+    </tr>
+
+</table>
+<br>
+    <form action="" method="post">
+                {{ form.hidden_tag() }}
+                {{ form_field(form.date) }}
+                {{ form_field(form.description)}}
+                {{ form_field(form.status) }}
+                {{ form_field(form.severity) }}
+                {{ form.submit }}
+    </form>
+
+
 
 
 {% endblock %}
