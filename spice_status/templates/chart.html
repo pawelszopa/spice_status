@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  </head>
+<body>
+    <div class="ct-chart ct-perfect-fourth"></div>
+<script>
+
+    var getData = $.get('/data');
+    getData.done(function(results) {
+    var data = {
+
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+
+      series: [
+        results.results]
+
+    };
+
+
+    var myChart = new Chartist.Line('.ct-chart', data);
+});
+
+</script>
+
+</body>
+</html>

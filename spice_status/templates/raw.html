@@ -23,8 +23,9 @@
                 <td>{{ rd.total_client_req_approved }}</td>
 
             </tr>
+            {% endfor %}
         </table>
-        {% endfor %}
+
         {% else %}
         No raw_data yet.
         {% endif %}

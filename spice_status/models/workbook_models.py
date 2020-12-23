@@ -16,3 +16,7 @@ class Workbook(db.Model):
     @staticmethod
     def all_of_workbooks():
         return Workbook.query.order_by(desc(Workbook.cw))
+
+    @staticmethod
+    def workbook_query():
+        return Workbook.query.all()
