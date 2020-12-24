@@ -62,4 +62,4 @@ def chart():
 
 @bp_main.route('/data')
 def data():
-    return jsonify({'results': sample(range(1, 10), 5)}, {'dupa': sample(range(1, 10), 5)})
+    return jsonify({'results': sample(range(1, 10), 5), 'sss': sample(range(1, 10), 5)})
