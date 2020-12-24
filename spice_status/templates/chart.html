@@ -6,7 +6,8 @@
       <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   </head>
 <body>
-    <div class="ct-chart ct-perfect-fourth"></div>
+    <div class="ct-chart ct-perfect-fourth" id="chart1"></div>
+    <div class="ct-chart ct-perfect-fourth" id="chart2"></div>
 <script>
 
     var getData = $.get('/data');
@@ -26,11 +27,21 @@
 
     };
 
+    var options = {
+    width: 600,
+    height: 800
+    }
 
-    var myChart = new Chartist.Line('.ct-chart', data);
+
+    var myChart = new Chartist.Line('#chart1', data, options);
+
+    var myChart = new Chartist.Line('#chart2', data, options);
 });
 
 </script>
+
+
+
 
 </body>
 </html>
