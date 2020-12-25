@@ -6,15 +6,21 @@
       <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   </head>
 <body>
+<div>
+<h1><center>SHRD</center></h1>
     <div class="ct-chart ct-perfect-fourth" id="chart1"></div>
-    <div class="ct-chart ct-perfect-fourth" id="chart2"></div>
+<h1><center>traceability</center></h1>
+    <center><div class="ct-chart ct-perfect-fourth" id="chart2"></div></center>
+</div>
+
 <script>
 
     var getData = $.get('/data');
+
     getData.done(function(results) {
     var data = {
 
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      labels: results.cw,
 
       series: [{
         name: 'series-1',
@@ -28,8 +34,8 @@
     };
 
     var options = {
-    width: 600,
-    height: 800
+
+    height: 400
     }
 
 
@@ -39,6 +45,8 @@
 });
 
 </script>
+
+
 
 
 
