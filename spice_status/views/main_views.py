@@ -4,7 +4,8 @@ from flask import Blueprint, render_template, jsonify
 
 from ..models.project_models import get_project
 from ..forms.issue_form import IssueForm
-from ..models.issue_models import Issue, get_issue_low, get_issue_mid, get_issue_high, get_issue_escalated
+from ..models.issue_models import Issue, get_issue_low, get_issue_mid, get_issue_high, get_issue_escalated, \
+    get_issue_by_id
 from ..models.user_models import User
 from spice_status import login_manager, db
 from ..models.workbook_models import Workbook
@@ -35,11 +36,18 @@ def home():
                            high=get_issue_high(), esca=get_issue_escalated(), project=get_project())
 
 
+@bp_main.route('/edit/<int:issue_id>', methods=["GET", "POST"])
+def edit(issue_id):
+    db_item = get_issue_by_id(issue_id)
+    return render_template('edit_item.html', issue=db_item)
+
+
 @bp_main.route('/raw')
 def raw():
     return render_template('raw.html', raw_data=Workbook.all_of_workbooks(), users=User.all_of_users())
 
 
+'''
 @bp_main.route('/charts', methods=['GET', "POST"])
 def charts():
     shrd = []
@@ -52,12 +60,13 @@ def charts():
     data = [{'Task': 'Hours per Day', 'Work': 11, 'Eat': 2, 'Commute': 2, 'Watching TV': 2, 'Sleeping': 7},
             {'Work': 12, 'Eat': 4, 'Commute': 5, 'Watching TV': 8, 'Sleeping': 9}]
 
-    return render_template('charts.html', raw_data=Workbook.all_of_workbooks(), shrd=shrd, datas=data)
+    return render_template('charts_google_try.html', raw_data=Workbook.all_of_workbooks(), shrd=shrd, datas=data)
+'''
 
 
-@bp_main.route('/chart')
+@bp_main.route('/charts')
 def chart():
-    return render_template('chart.html')
+    return render_template('charts.html')
 
 
 @bp_main.route('/data')

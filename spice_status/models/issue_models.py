@@ -26,3 +26,7 @@ def get_issue_high():
 
 def get_issue_escalated():
     return Issue.query.filter_by(severity='Escalated').all()
+
+
+def get_issue_by_id(issue_id):
+    return Issue.query.filter_by(id=issue_id).first()

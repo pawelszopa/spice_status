@@ -14,3 +14,13 @@ class IssueForm(FlaskForm):
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
                            validators=[DataRequired()])
     submit = SubmitField("Create")
+
+
+class EditIssueForm(FlaskForm):
+    description = StringField('Description', validators=[Length(min=15), DataRequired()])
+    status = SelectField('Status', choices=['New', 'Assign', 'WIP', 'In Review', 'Closed'],
+                         validators=[DataRequired()])
+    link = StringField('link')
+    severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
+                           validators=[DataRequired()])
+    submit = SubmitField("Edit")
