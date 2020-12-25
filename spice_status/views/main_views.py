@@ -62,13 +62,20 @@ def chart():
 
 @bp_main.route('/data')
 def data():
-    shrd = []
+    cw = []
+    shrd_total = []
+    shrd_approved = []
     data = Workbook.all_of_workbooks()
     for row in data[::-1]:
-        shrd.append(row.cw)
+        cw.append(row.cw)
+    for row in data:
+        shrd_total.append(row.total_client_req)
+    for row in data:
+        shrd_approved.append(row.total_client_req_approved)
 
-
-    return jsonify({'results': sample(range(1, 10), 5), 'sss': sample(range(1, 10), 5), 'cw': shrd})
+    return jsonify(
+        {'results': sample(range(1, 10), 5), 'sss': sample(range(1, 10), 5), 'cw': cw, 'shrd_total': shrd_total,
+         'shrd_approved': shrd_approved})
 
 
 @bp_main.route('/cw')
