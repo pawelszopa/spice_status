@@ -16,11 +16,15 @@ class IssueForm(FlaskForm):
     submit = SubmitField("Create")
 
 
-class EditIssueForm(FlaskForm):
-    description = StringField('Description', validators=[Length(min=15), DataRequired()])
+class StatusChangeForm(FlaskForm):
     status = SelectField('Status', choices=['New', 'Assign', 'WIP', 'In Review', 'Closed'],
                          validators=[DataRequired()])
-    link = StringField('link')
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
                            validators=[DataRequired()])
     submit = SubmitField("Edit")
+
+
+class EditIssueForm(StatusChangeForm):
+    description = StringField('Description', validators=[Length(min=15), DataRequired()])
+    link = StringField('link')
+

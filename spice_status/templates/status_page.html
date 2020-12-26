@@ -25,7 +25,7 @@
         Issue type low
         <td>
             {% for item in low %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>
@@ -36,7 +36,7 @@
         Issue type mid
         <td>
             {% for item in mid %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>
@@ -47,7 +47,7 @@
         Issue type high
         <td>
             {% for item in high %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>
@@ -58,7 +58,7 @@
         Issue type escalated
         <td>
             {% for item in esca %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }}</li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>

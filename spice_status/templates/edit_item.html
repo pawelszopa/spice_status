@@ -1,7 +1,16 @@
 {% extends '_base.html' %}
 
-{% block content %}
+{% from "html_macros.html" import form_field %}
 
-{{issue.description}}
+{% block content %}
+<form action="" method="post">
+                {{ form.hidden_tag() }}
+                {{ form_field(form.status) }}
+                {{ form_field(form.severity)}}
+                {{ form_field(form.description) }}
+                {{ form_field(form.link) }}
+                {{ form.submit }}
+        </form>
+
 
 {% endblock %}
