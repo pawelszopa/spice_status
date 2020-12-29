@@ -24,6 +24,8 @@ def create_app():
     from .views import bp_project
     from .views import bp_auth
     from .views.input_data_views import bp_input
+    from .views import bp_checklist
+    spice_status.register_blueprint(bp_checklist)
     spice_status.register_blueprint(bp_main)
 
     spice_status.register_blueprint(bp_auth)

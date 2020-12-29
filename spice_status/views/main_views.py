@@ -1,5 +1,3 @@
-import json
-
 from flask import Blueprint, render_template, jsonify, url_for, flash
 from werkzeug.utils import redirect
 
@@ -10,7 +8,7 @@ from ..models.issue_models import Issue, get_issue_low, get_issue_mid, get_issue
 from ..models.user_models import User
 from spice_status import login_manager, db
 from ..models.workbook_models import Workbook
-from random import sample
+
 
 bp_main = Blueprint("main", __name__, url_prefix='/')
 
@@ -62,23 +60,6 @@ def raw():
     return render_template('raw.html', raw_data=Workbook.all_of_workbooks(), users=User.all_of_users())
 
 
-'''
-@bp_main.route('/charts', methods=['GET', "POST"])
-def charts():
-    shrd = []
-    data = Workbook.all_of_workbooks()
-    for row in data:
-        shrd.append([row.cw, row.total_client_req, row.total_client_req_approved])
-    shrd.insert(0, ["CW", "Total_Shrd", "Total ShRd Approved"])
-    shrd = jsonify(shrd)
-    data = {'Task': 'Hours per Day', 'Work': 11, 'Eat': 2, 'Commute': 2, 'Watching TV': 2, 'Sleeping': 7}
-    data = [{'Task': 'Hours per Day', 'Work': 11, 'Eat': 2, 'Commute': 2, 'Watching TV': 2, 'Sleeping': 7},
-            {'Work': 12, 'Eat': 4, 'Commute': 5, 'Watching TV': 8, 'Sleeping': 9}]
-
-    return render_template('charts_google_try.html', raw_data=Workbook.all_of_workbooks(), shrd=shrd, datas=data)
-'''
-
-
 @bp_main.route('/charts')
 def chart():
     return render_template('charts.html')
@@ -103,4 +84,18 @@ def data():
          'shrd_approved': shrd_approved})
 
 
+'''
+@bp_main.route('/charts', methods=['GET', "POST"])
+def charts():
+    shrd = []
+    data = Workbook.all_of_workbooks()
+    for row in data:
+        shrd.append([row.cw, row.total_client_req, row.total_client_req_approved])
+    shrd.insert(0, ["CW", "Total_Shrd", "Total ShRd Approved"])
+    shrd = jsonify(shrd)
+    data = {'Task': 'Hours per Day', 'Work': 11, 'Eat': 2, 'Commute': 2, 'Watching TV': 2, 'Sleeping': 7}
+    data = [{'Task': 'Hours per Day', 'Work': 11, 'Eat': 2, 'Commute': 2, 'Watching TV': 2, 'Sleeping': 7},
+            {'Work': 12, 'Eat': 4, 'Commute': 5, 'Watching TV': 8, 'Sleeping': 9}]
 
+    return render_template('charts_google_try.html', raw_data=Workbook.all_of_workbooks(), shrd=shrd, datas=data)
+'''

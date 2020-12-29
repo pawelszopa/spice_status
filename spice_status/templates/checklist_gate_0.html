@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+
+
+
+{% from "macros/form_field_macros.html" import render_field %}
+
+{% block content %}
+
+    {% with enctype = True %}
+
+         {% include 'partials/_form.html' %}
+
+    {% endwith %}
+
+{% endblock %}
