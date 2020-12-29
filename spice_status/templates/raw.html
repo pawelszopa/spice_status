@@ -14,6 +14,37 @@
                 <th>cw</th>
                 <th>total_client_req</th>
                 <th>total_client_req_approved</th>
+                <th>total_open_issue_client_req</th>
+                <th>total_sys_req</th>
+                <th>total_sys_req_approved</th>
+                <th>total_sys_req_implemented</th>
+                <th>total_sw_req</th>
+                <th>total_sw_req_approved</th>
+                <th>total_sw_req_implemented</th>
+                <th>ccm_more_50</th>
+                <th>ccm_24_50</th>
+                <th>ccm_12_24</th>
+                <th>misra_high</th>
+                <th>misra_mid</th>
+                <th>misra_low</th>
+                <th>branch_coverage</th>
+                <th>line_coverage</th>
+                <th>mc_dc_coverage</th>
+                <th>total_sw_req_tests</th>
+                <th>total_sw_req_passed</th>
+                <th>total_sys_req_tests</th>
+                <th>total_sys_req_tests_passed</th>
+                <th>traceability_sys_client</th>
+                <th>traceability_client_sys</th>
+                <th>traceability_sys_sw</th>
+                <th>traceability_sw_sys</th>
+                <th>total_features</th>
+                <th>total_bugs</th>
+                <th>total_bugs_solved</th>
+                <th>total_problems</th>
+                <th>total_problems_solved</th>
+                <th>total_change_requests</th>
+                <th>change_request_not_reviewed</th>
 
             </tr>
             {% for rd in raw_data %}
@@ -21,6 +52,37 @@
                 <td>{{ rd.cw }}</td>
                 <td>{{ rd.total_client_req }}</td>
                 <td>{{ rd.total_client_req_approved }}</td>
+                <td>{{ rd.total_open_issue_client_req }}</td>
+                <td>{{ rd.total_sys_req }}</td>
+                <td>{{ rd.total_sys_req_approved }}</td>
+                <td>{{ rd.total_sys_req_implemented }}</td>
+                <td>{{ rd.total_sw_req }}</td>
+                <td>{{ rd.total_sw_req_approved }}</td>
+                <td>{{ rd.total_sw_req_implemented }}</td>
+                <td>{{ rd.ccm_more_50 }}</td>
+                <td>{{ rd.ccm_24_50 }}</td>
+                <td>{{ rd.ccm_12_24 }}</td>
+                <td>{{ rd.misra_high }}</td>
+                <td>{{ rd.misra_mid }}</td>
+                <td>{{ rd.misra_low }}</td>
+                <td>{{ rd.branch_coverage }}</td>
+                <td>{{ rd.line_coverage }}</td>
+                <td>{{ rd.mc_dc_coverage }}</td>
+                <td>{{ rd.total_sw_req_tests }}</td>
+                <td>{{ rd.total_sw_req_passed }}</td>
+                <td>{{ rd.total_sys_req_tests }}</td>
+                <td>{{ rd.total_sys_req_tests_passed }}</td>
+                <td>{{ rd.traceability_sys_client }}</td>
+                <td>{{ rd.traceability_client_sys }}</td>
+                <td>{{ rd.traceability_sys_sw }}</td>
+                <td>{{ rd.traceability_sw_sys }}</td>
+                <td>{{ rd.total_features }}</td>
+                <td>{{ rd.total_bugs }}</td>
+                <td>{{ rd.total_bugs_solved }}</td>
+                <td>{{ rd.total_problems }}</td>
+                <td>{{ rd.total_problems_solved }}</td>
+                <td>{{ rd.total_change_requests }}</td>
+                <td>{{ rd.change_request_not_reviewed }}</td>
 
             </tr>
             {% endfor %}
