@@ -10,12 +10,8 @@ class ProjectForm(FlaskForm):
     gate_1 = StringField('Gate 1 date', validators=[DataRequired()])
     gate_2 = StringField('Gate 2 date', validators=[DataRequired()])
     gate_3 = StringField('Gate 3 date', validators=[DataRequired()])
-    gate_4 = StringField('Gate 4 date', validators=[DataRequired()])
     sop = StringField('Start of production date', validators=[DataRequired()])
     spice_level = StringField('Spice level', validators=[DataRequired()])
-    risks = TextAreaField('Projects risks')
-    low_issues = TextAreaField('Project Issues')
-    high_issues = TextAreaField('Project High Issues')
     submit = SubmitField('Send')
  
 

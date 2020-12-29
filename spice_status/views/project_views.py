@@ -19,7 +19,7 @@ def define_new_project():
                           gate_1=project_form.gate_1.data,
                           gate_2=project_form.gate_2.data,
                           gate_3=project_form.gate_3.data,
-                          gate_4=project_form.gate_4.data,
+
                           sop=project_form.sop.data,
                           spice_level=project_form.spice_level.data,
                           )
@@ -28,4 +28,4 @@ def define_new_project():
         db.session.commit()
         return redirect(url_for('main.home'))
 
-    return render_template("project_status.html", project=project_form)
+    return render_template("create_new_project.html", form=project_form)

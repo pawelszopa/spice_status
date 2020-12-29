@@ -9,7 +9,6 @@ class Project(db.Model):
     gate_1 = db.Column(db.String)
     gate_2 = db.Column(db.String)
     gate_3 = db.Column(db.String)
-    gate_4 = db.Column(db.String)
     sop = db.Column(db.String)
     spice_level = db.Column(db.String)
     risks = db.Column(db.String)

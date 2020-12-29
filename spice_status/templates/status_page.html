@@ -1,8 +1,9 @@
-{% extends "_base.html"%}
+{% extends "partials/_three_column.html" %}
 {% from "macros/form_field_macros.html" import render_field %}
-{% block content %}
+<center> Project status   </center>
+{% block lside %}
 <h2>
-    <center> Project status   </center>
+
 </h2>
 
 <li>Project Name: {{ project.name }}</li>
@@ -14,18 +15,18 @@
 <li>Gate 4: {{ project.gate_4 }}</li>
 <li>Start of production: {{ project.sop }}</li>
 <li>Spice Level: {{ project.spice_level }}</li>
-<br>
 
-<br>
+{% endblock %}
 
 
+{% block main_content %}
 
 <table>
     <tr>
         Issue type low
         <td>
             {% for item in low %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for('main.edit', issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>
@@ -36,7 +37,7 @@
         Issue type mid
         <td>
             {% for item in mid %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for('main.edit', issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>
@@ -47,7 +48,7 @@
         Issue type high
         <td>
             {% for item in high %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for('main.edit', issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>
@@ -58,13 +59,16 @@
         Issue type escalated
         <td>
             {% for item in esca %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for("main.edit", issue_id=item.id)}}">EDIT</a></li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for('main.edit', issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>
 
 </table>
-<br>
+{% endblock %}
+
+{% block rside %}
+
      {% with enctype = True %}
 
          {% include 'partials/_form.html' %}

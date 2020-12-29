@@ -73,9 +73,9 @@ def data():
     data = Workbook.all_of_workbooks()
     for row in data[::-1]:
         cw.append(row.cw)
-    for row in data:
+    for row in data[::-1]:
         shrd_total.append(row.total_client_req)
-    for row in data:
+    for row in data[::-1]:
         shrd_approved.append(row.total_client_req_approved)
 
     return jsonify(
