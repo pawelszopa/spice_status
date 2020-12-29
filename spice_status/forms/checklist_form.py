@@ -1,13 +1,12 @@
 from datetime import datetime
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, SubmitField
+from wtforms import SelectField, SubmitField
 from wtforms.validators import DataRequired
 
 
 class Gate0Form(FlaskForm):
-    date = StringField('Gate Date', default=(datetime.utcnow().strftime("%m/%d/%Y")))
-    sw_strategy = SelectField('SW strategy created?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
+    sw_strategy = SelectField('SW strategy created?', choices=['Not Set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
     sys_strategy = SelectField('SyS strategy created?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
     test_strategy = SelectField('test strategy created?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
     submit = SubmitField('Submit')
@@ -22,4 +21,4 @@ class Gate2Form(Gate1Form):
 
 
 class SOPForm(Gate2Form):
-    is_ready = SelectField('Is device ready?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
+    is_ready = SelectField('Is device ready?', choices=['Yes', 'No', 'N/A'], validators=[DataRequired()])

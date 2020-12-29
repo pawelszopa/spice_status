@@ -10,9 +10,9 @@ bp_checklist = Blueprint("checklist", __name__, url_prefix='/checklist')
 @bp_checklist.route('/', methods=["GET", "POST"])
 def checklist_gate_1():
     form = Gate0Form()
-    form.sw_strategy.data = Gate0.sw_strategy
-    form.sys_strategy.data = Gate0.sys_strategy
-    form.test_strategy.dat = Gate0.test_strategy
+    form.sw_strategy.data = 'None'
+    form.sys_strategy.data = 'None'
+    form.test_strategy.dat = 'None'
     if form.validate_on_submit():
         gate = Gate0(sw_strategy=form.sw_strategy.data,
                      sys_strategy=form.sys_strategy.data,
