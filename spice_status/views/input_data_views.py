@@ -4,10 +4,10 @@ from .. import db
 from ..forms.workbook_form import WorkBookForm
 from ..models.workbook_models import Workbook
 
-bp_input = Blueprint("input", __name__, url_prefix='/')
+bp_input = Blueprint("input", __name__, url_prefix='/metrics')
 
 
-@bp_input.route('/metrics', methods=["GET", "POST"])
+@bp_input.route('/', methods=["GET", "POST"])
 def metrics():
     form = WorkBookForm()
 
@@ -20,3 +20,4 @@ def metrics():
 
         return redirect(url_for('main.home'))
     return render_template('data_add.html', form=form)
+

@@ -1,15 +1,13 @@
 {% extends "_base.html" %}
-{% from "html_macros.html" import form_field %}
+{% from "macros/form_field_macros.html" import render_field %}
 
 {% block title %} Add Metrics {% endblock %}
 {% block content %}
 
-        <form action="" method="post">
-                {{ form.hidden_tag() }}
-                {{ form_field(form.cw) }}
-                {{ form_field(form.total_client_req)}}
-                {{ form_field(form.total_client_req_approved) }}
-                {{ form.submit }}
-        </form>
+    {% with enctype = True %}
+
+         {% include 'partials/_form.html' %}
+
+    {% endwith %}
 
 {% endblock %}

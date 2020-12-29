@@ -1,6 +1,6 @@
 import json
 
-from flask import Blueprint, render_template, jsonify, url_for
+from flask import Blueprint, render_template, jsonify, url_for, flash
 from werkzeug.utils import redirect
 
 from ..models.project_models import get_project
@@ -33,6 +33,7 @@ def home():
         )
         db.session.add(issue)
         db.session.commit()
+        flash(f"Item {Issue.id} has been successfully added", "success")
     return render_template('status_page.html', form=form, low=get_issue_low(), mid=get_issue_mid(),
                            high=get_issue_high(), esca=get_issue_escalated(), project=get_project())
 
@@ -51,6 +52,7 @@ def edit(issue_id):
         db_item.description = form.status.data
         db_item.link = form.status.data
         db.session.commit()
+        flash(f"Item {issue_id} has been successfully modified", "success")
         return redirect(url_for('main.home'))
     return render_template('edit_item.html', issue=db_item, form=form)
 
@@ -96,15 +98,9 @@ def data():
         shrd_approved.append(row.total_client_req_approved)
 
     return jsonify(
-        {'results': sample(range(1, 10), 5), 'sss': sample(range(1, 10), 5), 'cw': cw, 'shrd_total': shrd_total,
+        {'cw': cw,
+         'shrd_total': shrd_total,
          'shrd_approved': shrd_approved})
 
 
-@bp_main.route('/cw')
-def cw():
-    shrd = []
-    data = Workbook.all_of_workbooks()
-    for row in data:
-        shrd.append(row.cw)
 
-    return jsonify({'cw': shrd})

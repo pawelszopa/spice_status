@@ -1,20 +1,11 @@
 {% extends "_base.html" %}
-{% from "html_macros.html" import form_field %}
+{% from "macros/form_field_macros.html" import render_field %}
 {% block content %}
-<form action="" method="post">
-     {{ project.hidden_tag() }}
 
-     {{form_field(project.start_date) }}
-     {{form_field(project.end_date) }}
-     {{form_field(project.name) }}
-     {{form_field(project.gate_1) }}
-     {{form_field(project.gate_2) }}
-     {{form_field(project.gate_3) }}
-     {{form_field(project.gate_4) }}
-     {{form_field(project.sop) }}
-     {{form_field(project.spice_level) }}
+    {% with enctype = True %}
 
-     {{ project.submit(class="btn btn-dark") }}
-</form>
+         {% include 'partials/_form.html' %}
+
+    {% endwith %}
 
 {% endblock %}
