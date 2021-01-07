@@ -3,7 +3,7 @@
 {% from "macros/form_field_macros.html" import render_field %}
 
 {% block content %}
-
+<a href="{{url_for('issue.delete', issue_id=issue_id)}}">Delete</a>
     {% with enctype = True %}
 
          {% include 'partials/_form.html' %}

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, InputRequired
 
 
 class IssueForm(FlaskForm):
@@ -16,15 +16,11 @@ class IssueForm(FlaskForm):
     submit = SubmitField("Create")
 
 
-class StatusChangeForm(FlaskForm):
+class EditIssueForm(FlaskForm):
+    description = StringField('Description', validators=[Length(min=15), DataRequired()])
+    link = StringField('link')
     status = SelectField('Status', choices=['New', 'Assign', 'WIP', 'In Review', 'Closed'],
                          validators=[DataRequired()])
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
-                           validators=[DataRequired()])
+                           validators=[InputRequired()])
     submit = SubmitField("Edit")
-
-
-class EditIssueForm(StatusChangeForm):
-    description = StringField('Description', validators=[Length(min=15), DataRequired()])
-    link = StringField('link')
-
