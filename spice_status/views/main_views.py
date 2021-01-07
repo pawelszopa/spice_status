@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash
 
 from ..models.project_models import get_project
 from ..forms.issue_form import IssueForm
-from ..models.issue_models import Issue, get_issue_low, get_issue_mid, get_issue_high, get_issue_escalated
+from ..models.issue_models import Issue, get_all_issues
 from ..models.user_models import User
 from spice_status import login_manager, db
 
@@ -28,5 +28,4 @@ def home():
         db.session.add(issue)
         db.session.commit()
         flash(f"Item {Issue.id} has been successfully added", "success")
-    return render_template('status_page.html', form=form, low=get_issue_low(), mid=get_issue_mid(),
-                           high=get_issue_high(), esca=get_issue_escalated(), project=get_project())
+    return render_template('status_page.html', form=form, issues=Issue.query.all(), project=get_project())

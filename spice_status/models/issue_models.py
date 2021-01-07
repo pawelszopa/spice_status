@@ -12,6 +12,10 @@ class Issue(db.Model):
     severity = db.Column(db.String)
 
 
+def get_all_issues():
+    return Issue.query.all()
+
+
 def get_issue_low():
     return Issue.query.filter_by(severity='Low').all()
 
