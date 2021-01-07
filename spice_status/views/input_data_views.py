@@ -14,8 +14,8 @@ def metrics():
 
     if form.validate_on_submit():
 
-        workbook = Workbook(cw=form.cw.data, total_client_req=form.total_client_req.data,
-                            total_client_req_approved=form.total_client_req_approved.data)
+        workbook = Workbook()
+        form.populate_obj(workbook)
         db.session.add(workbook)
         db.session.commit()
 
