@@ -45,6 +45,7 @@
                 <th>total_problems_solved</th>
                 <th>total_change_requests</th>
                 <th>change_request_not_reviewed</th>
+                <th>Edit:</th>
 
             </tr>
             {% for rd in raw_data %}
@@ -83,6 +84,7 @@
                 <td>{{ rd.total_problems_solved }}</td>
                 <td>{{ rd.total_change_requests }}</td>
                 <td>{{ rd.change_request_not_reviewed }}</td>
+                <td><a href="{{ url_for('input.edit', workbook_id=rd.id) }}">Edit</a></td>
 
             </tr>
             {% endfor %}

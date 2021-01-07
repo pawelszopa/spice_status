@@ -52,3 +52,7 @@ class Workbook(db.Model):
     @staticmethod
     def workbook_query():
         return Workbook.query.all()
+
+    @staticmethod
+    def get_metric_by_id(idx):
+        return Workbook.query.get_or_404(idx)

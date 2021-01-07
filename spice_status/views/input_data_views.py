@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, jsonify
+from flask import Blueprint, render_template, url_for, jsonify, flash
 from werkzeug.utils import redirect
 from .. import db
 from ..forms.workbook_form import WorkBookForm
@@ -8,19 +8,32 @@ from ..models.workbook_models import Workbook
 bp_input = Blueprint("input", __name__, url_prefix='/metrics')
 
 
-@bp_input.route('/', methods=["GET", "POST"])
+@bp_input.route('/add', methods=["GET", "POST"])
 def metrics():
     form = WorkBookForm()
 
     if form.validate_on_submit():
-
         workbook = Workbook()
         form.populate_obj(workbook)
         db.session.add(workbook)
         db.session.commit()
 
         return redirect(url_for('main.home'))
-    return render_template('data_add.html', form=form)
+    return render_template('data_add.html', form=form, title="Add new data")
+
+
+@bp_input.route('/edit/<int:workbook_id>', methods=["GET", "POST"])
+def edit(workbook_id):
+    workbook = Workbook.get_metric_by_id(workbook_id)
+    form = WorkBookForm(obj=workbook)
+
+    if form.validate_on_submit():
+        form.populate_obj(workbook)
+        db.session.commit()
+        flash(f'Saved, description: {workbook.date}')
+        return redirect(url_for('input.raw'))
+
+    return render_template("data_add.html", form=form, title="Edit data")
 
 
 @bp_input.route('/raw')
@@ -50,7 +63,6 @@ def data():
         {'cw': cw,
          'shrd_total': shrd_total,
          'shrd_approved': shrd_approved})
-
 
 
 '''
