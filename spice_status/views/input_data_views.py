@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, jsonify, flash
+from flask import Blueprint, render_template, url_for, jsonify, flash, request
 from werkzeug.utils import redirect
 from .. import db
 from ..forms.workbook_form import WorkBookForm
@@ -30,10 +30,26 @@ def edit(workbook_id):
     if form.validate_on_submit():
         form.populate_obj(workbook)
         db.session.commit()
-        flash(f'Saved, description: {workbook.date}')
+        flash(f'Saved, description: {workbook.cw}')
         return redirect(url_for('input.raw'))
 
-    return render_template("data_add.html", form=form, title="Edit data")
+    return render_template("data_add.html", form=form, title="Edit data", workbook_id=workbook_id)
+
+
+@bp_input.route('/delete/<int:workbook_id>', methods=['GET', 'POST'])
+def delete(workbook_id):
+    workbook = Workbook.get_metric_by_id(workbook_id)
+
+    if request.method == "POST":
+        db.session.delete(workbook)
+        db.session.commit()
+        flash(f'Data has been removed: {workbook.cw}.')
+        return redirect(url_for('input.raw'))
+
+    else:
+        flash('Please confirm deleting the bookmark.')
+
+    return render_template("confirm_delete.html", workbook=workbook)
 
 
 @bp_input.route('/raw')

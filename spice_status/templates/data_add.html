@@ -5,7 +5,9 @@
 {% block content %}
 
     <h2>{{ title }}</h2>
-
+{% if title == "Edit data" %}
+<a href="{{url_for('input.delete', workbook_id=workbook_id)}}">Delete</a>
+{% endif %}
     {% with enctype = True %}
 
          {% include 'partials/_form.html' %}
