@@ -37,7 +37,7 @@
         Issue type mid
         <td>
             {% for item in mid %}
-            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for('main.edit', issue_id=item.id)}}">EDIT</a></li>
+            <li>{{ item.date }}{{ item.description }}{{ item.status }} <a href="{{url_for('issue.edit', issue_id=item.id)}}">EDIT</a></li>
             {% endfor %}
         </td>
     </tr>

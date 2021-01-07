@@ -29,3 +29,6 @@ def define_new_project():
         return redirect(url_for('main.home'))
 
     return render_template("create_new_project.html", form=project_form)
+
+
+
