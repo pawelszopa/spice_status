@@ -7,11 +7,14 @@ from wtforms.validators import DataRequired, Length, InputRequired
 
 class IssueForm(FlaskForm):
     date = StringField('Issue date', default=(datetime.utcnow().strftime("%m/%d/%Y")), validators=[DataRequired()])
+    title = StringField('Title', validators=[Length(min=1, max=64, message='Title must be up to 64')])
     description = StringField('Description', validators=[Length(min=15), DataRequired()])
     status = SelectField('Status', choices=['New', 'Assign', 'WIP', 'In Review', 'Closed'],
                          validators=[DataRequired()])
     link = StringField('link')
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
+                           validators=[DataRequired()])
+    spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN'],
                            validators=[DataRequired()])
     submit = SubmitField("Create")
 

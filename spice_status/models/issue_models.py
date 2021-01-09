@@ -6,10 +6,12 @@ from spice_status import db
 class Issue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String, default=(datetime.utcnow().strftime("%m/%d/%Y")))
+    title = db.Column(db.String)
     description = db.Column(db.String)
     status = db.Column(db.String)
-    link = db.Column(db.String, default='')
     severity = db.Column(db.String)
+    process = db.Column(db.String)
+    link = db.Column(db.String, default='')
 
 
 def get_all_issues():

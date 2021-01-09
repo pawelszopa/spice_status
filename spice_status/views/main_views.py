@@ -20,10 +20,12 @@ def home():
     if form.validate_on_submit():
         issue = Issue(
             date=form.date.data,
+            title= form.title.data,
             description=form.description.data,
             status=form.status.data,
-            link='',
             severity=form.severity.data,
+            process= form.spice_process.data,
+            link='',
         )
         db.session.add(issue)
         db.session.commit()
