@@ -4,17 +4,18 @@
     </div>
       <div class="card-body">
         <h4 class="card-title">
-          {{ issue.description }}
+          {{ issue.title }}
           </h4>
 
 
-        <h5>{{ issue.status}}</h5>
+        <h5>{{ issue.description}}</h5>
+        <p class="card-text">{{issue.status}}</p>
         <p class="card-text">{{issue.severity}}</p>
 
 
     </div>
     <div class="card-footer">
-      <small class="text-muted"> {{issue.link}} -> {{issue.date}}
+      <small class="text-muted">{{issue.date}}
       </small>
     </div>
       </a>

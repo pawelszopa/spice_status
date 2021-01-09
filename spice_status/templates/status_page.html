@@ -2,9 +2,20 @@
 {% from "macros/form_field_macros.html" import render_field %}
 <center> Project status   </center>
 {% block lside %}
-<h2>
+<h3>
+Filter Issues:
+</h3>
 
-</h2>
+
+
+{% with enctype = True %}
+        {% with form = filter_form %}
+         {% include 'partials/_form.html' %}
+
+        {% endwith %}
+    {% endwith %}
+
+
 
 <li>Project Name: {{ project.name }}</li>
 <li>Start Date: {{ project.start_date }}</li>
@@ -15,7 +26,6 @@
 <li>Gate 4: {{ project.gate_4 }}</li>
 <li>Start of production: {{ project.sop }}</li>
 <li>Spice Level: {{ project.spice_level }}</li>
-
 {% endblock %}
 
 
@@ -34,11 +44,12 @@
 {% endblock %}
 
 {% block rside %}
-
+<h3>Create Issue</h3>
      {% with enctype = True %}
-
+        {% with form = issue_form %}
          {% include 'partials/_form.html' %}
 
+        {% endwith %}
     {% endwith %}
 
 

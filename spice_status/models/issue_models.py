@@ -10,7 +10,7 @@ class Issue(db.Model):
     description = db.Column(db.String)
     status = db.Column(db.String)
     severity = db.Column(db.String)
-    process = db.Column(db.String)
+    spice_process = db.Column(db.String)
     link = db.Column(db.String, default='')
 
 

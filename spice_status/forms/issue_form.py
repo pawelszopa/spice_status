@@ -15,7 +15,7 @@ class IssueForm(FlaskForm):
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
                            validators=[DataRequired()])
     spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN'],
-                           validators=[DataRequired()])
+                                validators=[DataRequired()])
     submit = SubmitField("Create")
 
 
@@ -27,3 +27,12 @@ class EditIssueForm(FlaskForm):
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
                            validators=[InputRequired()])
     submit = SubmitField("Edit")
+
+
+class FilterForm(FlaskForm):
+    title = StringField('Title', validators=[Length(max=10, message='Max 10')])
+    description = StringField('Description', validators=[Length(max=15)])
+    status = SelectField('Status', choices=['New', 'Assign', 'WIP', 'In Review', 'Closed', 'NA'], default='NA')
+    severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated', 'NA'], default='NA')
+    spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN', 'NA'], default='NA')
+    submit = SubmitField("Filter")
