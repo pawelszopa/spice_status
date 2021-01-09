@@ -8,11 +8,11 @@ Filter Issues:
 
 
 
-{% with enctype = True %}
+
         {% with form = filter_form %}
          {% include 'partials/_form.html' %}
 
-        {% endwith %}
+
     {% endwith %}
 
 
@@ -45,11 +45,13 @@ Filter Issues:
 
 {% block rside %}
 <h3>Create Issue</h3>
-     {% with enctype = True %}
+
         {% with form = issue_form %}
+            {% with name = form2 %}
          {% include 'partials/_form.html' %}
 
         {% endwith %}
+
     {% endwith %}
 
 

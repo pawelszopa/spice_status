@@ -1,4 +1,4 @@
 *.pyc
 .idea
 migrations
-spice_status/project_name.db
+spice_status/spice_status.db

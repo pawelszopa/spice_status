@@ -20,12 +20,15 @@ class IssueForm(FlaskForm):
 
 
 class EditIssueForm(FlaskForm):
+    title = StringField('Title', validators=[Length(min=1, max=64, message='Title must be up to 64')])
     description = StringField('Description', validators=[Length(min=15), DataRequired()])
     link = StringField('link')
     status = SelectField('Status', choices=['New', 'Assign', 'WIP', 'In Review', 'Closed'],
                          validators=[DataRequired()])
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
                            validators=[InputRequired()])
+    spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN'],
+                                validators=[DataRequired()])
     submit = SubmitField("Edit")
 
 
@@ -36,3 +39,5 @@ class FilterForm(FlaskForm):
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated', 'NA'], default='NA')
     spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN', 'NA'], default='NA')
     submit = SubmitField("Filter")
+
+

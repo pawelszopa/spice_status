@@ -16,8 +16,6 @@ def load_user(user_id):
 
 @bp_main.route('/', methods=['GET', 'POST'])
 def home():
-
-
     issue_form = IssueForm()
     filter_form = FilterForm()
 
@@ -67,15 +65,12 @@ def home():
                     issues_temp.append(issue)
             issues = issues_temp
 
-        # if filter_form.spice_process.data == 'NA':
-        #     issues_temp = []
-        #     for issue in issues:
-        #         if filter_form.spice_process.data in issue.spice_process:
-        #             issues_temp.append(issue)
-        #     issues = issues_temp
-
-
-
+        if filter_form.spice_process.data != 'NA':
+            issues_temp = []
+            for issue in issues:
+                if filter_form.spice_process.data in issue.spice_process:
+                    issues_temp.append(issue)
+            issues = issues_temp
 
     return render_template('status_page.html', issue_form=issue_form, issues=issues, project=get_project(),
                            filter_form=filter_form)
