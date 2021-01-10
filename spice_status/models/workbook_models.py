@@ -9,10 +9,8 @@ from spice_status import db
 class Workbook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     cw = db.Column(db.String)
-
     total_client_req = db.Column(db.Integer)
     total_client_req_approved = db.Column(db.Integer)
-
     total_open_issue_client_req = db.Column(db.Integer)
     total_sys_req = db.Column(db.Integer)
     total_sys_req_approved = db.Column(db.Integer)

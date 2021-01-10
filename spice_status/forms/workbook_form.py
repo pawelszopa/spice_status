@@ -1,7 +1,8 @@
 from datetime import datetime
 
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, SubmitField, StringField, FloatField
+from flask_wtf.file import FileAllowed
+from wtforms import IntegerField, SubmitField, StringField, FloatField, FileField
 from wtforms.validators import InputRequired, DataRequired
 
 
@@ -41,3 +42,10 @@ class WorkBookForm(FlaskForm):
     total_change_requests = IntegerField('total_change_requests', validators=[InputRequired()])
     change_request_not_reviewed = IntegerField('change_request_not_reviewed', validators=[InputRequired()])
     submit = SubmitField('Send')
+
+
+class ExcelForm(FlaskForm):
+    excel = FileField('Excel File')
+    id_min = IntegerField('Min ID number', validators=[DataRequired(), InputRequired()])
+    id_max = IntegerField('Max ID number', validators=[DataRequired(), InputRequired()])
+    submit = SubmitField('ADD')
