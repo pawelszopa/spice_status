@@ -7,6 +7,10 @@ from ..models.issue_models import get_issue_by_id, Issue
 
 bp_issue = Blueprint("issue", __name__, url_prefix='/issue')
 
+@bp_issue.route('/<int:issue_id>')
+def issue(issue_id):
+    issue = Issue.query.filter_by(id=issue_id).first()
+    return render_template('issue.html', issue_id=1, issue=issue)
 
 @bp_issue.route('/edit/<int:issue_id>', methods=["GET", "POST"])
 def edit(issue_id):

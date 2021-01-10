@@ -1,0 +1,25 @@
+{% extends 'partials/_one_column.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-3 my-4">
+        <a href="{{ url_for('issue.edit', issue_id=issue.id) }}" class="btn btn-success">Edit</a>
+        <a href="{{ url_for('issue.delete', issue_id=issue.id) }}" class="btn btn-danger">Delete</a>
+
+    </div>
+    <div class="col-sm-9">
+        <div class="card mt-4">
+
+            <div class="card-body">
+                <h3 class="card-title">{{ issue.title }}</h3>
+                <h4>{{issue.status}}</h4>
+                <p class="card-text">{{issue.description}}</p>
+                <div>
+                    <div class="badge-secondary">{{issue.severity}}</div>
+                    <br>
+                    <div class="badge-secondary">{{issue.date}}</div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>

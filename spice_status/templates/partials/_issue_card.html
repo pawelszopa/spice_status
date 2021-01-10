@@ -1,4 +1,4 @@
-   <a href="{{ url_for('issue.edit', issue_id=issue.id ) }}" class="anchor-hidden">
+   <a href="{{ url_for('issue.issue', issue_id=issue.id ) }}" class="anchor-hidden">
     <div class="embed-responsive embed-responsive-16by9">
     <img src="{%if issue.severity=='Escalated' %}{{ url_for('static', filename='images/red_dot.JPG') }}{% elif issue.severity=='High'%} {{ url_for('static', filename='images/orange_dot.JPG') }}{% elif issue.severity=='Mid'%} {{ url_for('static', filename='images/yellow_dot.JPG') }}{% elif issue.severity=='Low'%} {{ url_for('static', filename='images/green_dot.JPG') }} {% endif %}" class="card-img-top embed-responsive-item" alt="...">
     </div>
