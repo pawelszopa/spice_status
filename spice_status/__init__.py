@@ -26,6 +26,7 @@ def create_app():
     from .views.input_data_views import bp_input
     from .views import bp_checklist
     from .views import bp_issue
+    from .views import bp_comment
     spice_status.register_blueprint(bp_checklist)
     spice_status.register_blueprint(bp_main)
 
@@ -33,6 +34,7 @@ def create_app():
     spice_status.register_blueprint(bp_input)
     spice_status.register_blueprint(bp_project)
     spice_status.register_blueprint(bp_issue)
+    spice_status.register_blueprint(bp_comment)
     db.init_app(spice_status)
     Migrate(spice_status, db)
 

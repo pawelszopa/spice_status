@@ -12,7 +12,7 @@ class Issue(db.Model):
     severity = db.Column(db.String)
     spice_process = db.Column(db.String)
     link = db.Column(db.String, default='')
-    # comments = db.relationship("Comment", backref='Issue', lazy='dynamic')
+    comments = db.relationship("Comment", backref='Issue', lazy='dynamic')
 
 def get_all_issues():
     return Issue.query.all()

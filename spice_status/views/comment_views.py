@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import Blueprint, url_for
+from flask import Blueprint, url_for, render_template
 from werkzeug.utils import redirect
 
 from spice_status import db
@@ -10,7 +10,7 @@ from ..forms.comment_forms import CommentForm
 bp_comment = Blueprint("comment", __name__, url_prefix='/comments')
 
 
-@bp_comment.route('/', methods=['POST'])
+@bp_comment.route('/', methods=['GET', 'POST'])
 def comment():
     form = CommentForm()
 
@@ -22,5 +22,7 @@ def comment():
         )
         db.session.add(comment)
         db.session.commit()
-    return redirect(url_for('main.home', issue_id=form.issue_id.data))
+        return redirect(url_for('main.home', issue_id=form.issue_id.data))
+
 # escape is cleaning text for example from SQL that shouldn't be there
+
