@@ -11,14 +11,18 @@ bp_issue = Blueprint("issue", __name__, url_prefix='/issue')
 @bp_issue.route('/edit/<int:issue_id>', methods=["GET", "POST"])
 def edit(issue_id):
     db_item = get_issue_by_id(issue_id)
-    form = EditIssueForm(obj=db_item)
+    if db_item:
+        form = EditIssueForm(obj=db_item)
 
-    if form.validate_on_submit():
-        form.populate_obj(db_item)
-        db.session.commit()
-        flash(f"Item {issue_id} has been successfully modified", "success")
-        return redirect(url_for('main.home'))
-    return render_template('edit_item.html', issue=db_item, form=form, issue_id=issue_id)
+        if form.validate_on_submit():
+            form.populate_obj(db_item)
+            db.session.commit()
+            flash(f"Item {issue_id} has been successfully modified", "success")
+            return redirect(url_for('main.home'))
+        return render_template('edit_item.html', issue=db_item, form=form, issue_id=issue_id)
+    else:
+        return render_template('404.html')
+
 
 
 @bp_issue.route('/delete/<int:issue_id>', methods=["GET", "POST"])
