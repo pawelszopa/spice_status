@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from ..models.project_models import get_project
 from ..forms.issue_form import IssueForm, FilterForm
@@ -30,6 +30,7 @@ def home():
             severity=issue_form.severity.data,
             spice_process=issue_form.spice_process.data,
             link='',
+            user_id=current_user.id
         )
         db.session.add(issue)
         db.session.commit()

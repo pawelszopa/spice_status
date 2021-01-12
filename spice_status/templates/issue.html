@@ -23,5 +23,28 @@
         </div>
         </div>
         </div>
-
+ <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                Product Reviews
+            </div>
+            <div class="card-body">
+                {% with %}
+                    {% set action = url_for('comment.comment') %}
+                    {% set form = CommentForm %}
+                    {% include 'partials/_form.html' %}
+                {% endwith %}
+                <hr class="form-border">
+                {% if comments %}
+                    {% for comment in comments %}
+                        {% with content = comment.content %}
+                            {% include 'partials/_comment.html' %}
+                        {% endwith %}
+                    {% endfor %}
+                {% else %}
+                    <p class="placeholder-comment">Be the first to comment on this item.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -2,4 +2,3 @@
 .idea
 migrations
 spice_status/spice_status.db
-*.xlsx

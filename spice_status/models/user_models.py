@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String)
     issue = db.relationship("Issue", backref='user', lazy='dynamic')
 
+
     @property
     def password(self):
         raise AttributeError('Password: write only field')
@@ -26,6 +27,10 @@ class User(db.Model, UserMixin):
     @staticmethod
     def get_by_username(username):
         return User.query.filter_by(username=username).first()
+
+    @staticmethod
+    def get_username_by_id(id):
+        return User.query.filter_by(id=id).first().username
 
     def __repr__(self):
         return f'<User {self.username}>'

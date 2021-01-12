@@ -9,13 +9,14 @@
 
 
         <h5>{{ issue.description}}</h5>
+
         <p class="card-text">{{issue.status}} -> {{issue.severity}}</p>
         <p class="card-text">{{issue.spice_process}}</p>
 
 
     </div>
     <div class="card-footer">
-      <small class="text-muted">{{issue.date}}
+      <small class="text-muted">Created by: {{ issue.user.username}} date: {{issue.date}}
       </small>
     </div>
       </a>

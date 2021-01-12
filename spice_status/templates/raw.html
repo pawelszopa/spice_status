@@ -8,6 +8,8 @@
       <center>  <h1>Raw database</h1> </center>
     </header>
     <section>
+        <div class="col-sm-3 my-4">
+        <a href="{{ url_for('input.generate')}}" class="btn btn-success">Generate Excel file</a>
         {% if raw_data.count() > 0 %}
         <table>
             <tr>

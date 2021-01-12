@@ -1,1 +1,1 @@
-from spice_status.helpers.excel_data import excel_data
+from spice_status.helpers.excel_data import excel_data, generate_excel

@@ -8,3 +8,4 @@ class Comment(db.Model):
     date = db.Column(db.String, default=(datetime.utcnow().strftime("%m/%d/%Y")))
     content = db.Column(db.String(256))
     issue_id = db.Column(db.Integer, db.ForeignKey('issue.id'), nullable=False)
+
