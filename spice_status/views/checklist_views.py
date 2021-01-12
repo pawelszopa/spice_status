@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, url_for
+from flask_login import login_required
 
 from .. import db
 from ..forms.checklist_form import Gate0Form
@@ -8,6 +9,7 @@ bp_checklist = Blueprint("checklist", __name__, url_prefix='/checklist')
 
 
 @bp_checklist.route('/', methods=["GET", "POST"])
+@login_required
 def checklist_gate_1():
     form = Gate0Form()
     form.sw_strategy.data = 'None'

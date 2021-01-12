@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from flask import Blueprint, url_for, render_template
+from flask_login import login_required
 from werkzeug.utils import redirect
 
 from spice_status import db
@@ -11,6 +12,7 @@ bp_comment = Blueprint("comment", __name__, url_prefix='/comments')
 
 
 @bp_comment.route('/', methods=['GET', 'POST'])
+@login_required
 def comment():
     form = CommentForm()
 

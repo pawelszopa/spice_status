@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120), unique=True)
     password_hash = db.Column(db.String)
+    issue = db.relationship("Issue", backref='user', lazy='dynamic')
 
     @property
     def password(self):

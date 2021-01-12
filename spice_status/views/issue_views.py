@@ -1,4 +1,5 @@
 from flask import Blueprint, flash, url_for, render_template, request
+from flask_login import login_required
 from werkzeug.utils import redirect
 
 from .. import db
@@ -8,11 +9,13 @@ from ..models.issue_models import get_issue_by_id, Issue
 bp_issue = Blueprint("issue", __name__, url_prefix='/issue')
 
 @bp_issue.route('/<int:issue_id>')
+@login_required
 def issue(issue_id):
     issue = Issue.query.filter_by(id=issue_id).first()
     return render_template('issue.html', issue_id=1, issue=issue)
 
 @bp_issue.route('/edit/<int:issue_id>', methods=["GET", "POST"])
+@login_required
 def edit(issue_id):
     db_item = get_issue_by_id(issue_id)
     if db_item:

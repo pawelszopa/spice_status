@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, flash
+from flask_login import login_required
 
 from ..models.project_models import get_project
 from ..forms.issue_form import IssueForm, FilterForm
@@ -15,6 +16,7 @@ def load_user(user_id):
 
 
 @bp_main.route('/', methods=['GET', 'POST'])
+@login_required
 def home():
     issue_form = IssueForm()
     filter_form = FilterForm()

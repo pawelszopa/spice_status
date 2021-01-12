@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 
 from flask import Blueprint, render_template, url_for, jsonify, flash, request
+from flask_login import login_required
 from werkzeug.utils import redirect
 from .. import db
 from ..forms.workbook_form import WorkBookForm, ExcelForm
@@ -58,6 +59,7 @@ def delete(workbook_id):
 
 
 @bp_input.route('/add/excel', methods=['GET', 'POST'])
+@login_required
 def excel():
     form = ExcelForm()
     if form.validate_on_submit():

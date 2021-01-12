@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, url_for
+from flask_login import login_required
 from werkzeug.utils import redirect
 
 from spice_status import db
@@ -9,6 +10,7 @@ bp_project = Blueprint("project", __name__, url_prefix='/project')
 
 
 @bp_project.route('/add', methods=["GET", "POST"])
+@login_required
 def define_new_project():
     project_form = ProjectForm()
 
