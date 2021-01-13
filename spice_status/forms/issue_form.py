@@ -14,7 +14,10 @@ class IssueForm(FlaskForm):
     link = StringField('link')
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
                            validators=[DataRequired()])
-    spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN'],
+    spice_process = SelectField('Process',
+                                choices=['SYS.1', 'SYS.2', 'SYS.3', 'SYS.4', 'SYS.5', 'SWE.1', 'SWE.2', 'SWE.3',
+                                         'SWE.4', 'SWE.5', 'SWE.6', 'SUP.1', 'SUP.8', 'SUP.9', 'SUP.10', 'MAN.3',
+                                         'MAN.5'],
                                 validators=[DataRequired()])
     submit = SubmitField("Create")
 
@@ -27,7 +30,10 @@ class EditIssueForm(FlaskForm):
                          validators=[DataRequired()])
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated'],
                            validators=[InputRequired()])
-    spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN'],
+    spice_process = SelectField('Process',
+                                choices=['SYS.1', 'SYS.2', 'SYS.3', 'SYS.4', 'SYS.5', 'SWE.1', 'SWE.2', 'SWE.3',
+                                         'SWE.4', 'SWE.5', 'SWE.6', 'SUP.1', 'SUP.8', 'SUP.9', 'SUP.10', 'MAN.3',
+                                         'MAN.5'],
                                 validators=[DataRequired()])
     submit = SubmitField("Edit")
 
@@ -37,7 +43,9 @@ class FilterForm(FlaskForm):
     description = StringField('Description', validators=[Length(max=15)])
     status = SelectField('Status', choices=['New', 'Assign', 'WIP', 'In Review', 'Closed', 'NA'], default='NA')
     severity = SelectField('Severity', choices=['Low', 'Mid', 'High', 'Escalated', 'NA'], default='NA')
-    spice_process = SelectField('Process', choices=['SyS', 'SW', 'SUP', 'MAN', 'NA'], default='NA')
+    spice_process = SelectField('Process', choices=['SYS.1', 'SYS.2', 'SYS.3', 'SYS.4', 'SYS.5', 'SWE.1',
+                                                    'SWE.2', 'SWE.3',
+                                                    'SWE.4', 'SWE.5', 'SWE.6', 'SUP.1', 'SUP.8', 'SUP.9',
+                                                    'SUP.10', 'MAN.3',
+                                                    'MAN.5'], default='NA')
     submit = SubmitField("Filter")
-
-

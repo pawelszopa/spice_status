@@ -1,5 +1,5 @@
 {% macro render_field(field) %}
-<div class="form-group">
+<div class="form-group margin">
     {% with cls = "form-control is-invalid" if field.errors else "form-control" %}
         {%  if field.widget.input_type == "submit" %}
             {% set cls = "btn btn-outline-primary custom-btn" %}

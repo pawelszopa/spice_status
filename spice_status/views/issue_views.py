@@ -17,7 +17,7 @@ def issues():
     issue_form = IssueForm()
     filter_form = FilterForm()
 
-    if issue_form.submit.data and issue_form.validate_on_submit():
+    if issue_form.validate_on_submit():
         issue = Issue(
             date=issue_form.date.data,
             title=issue_form.title.data,
@@ -30,11 +30,11 @@ def issues():
         )
         db.session.add(issue)
         db.session.commit()
-        flash(f"Item {Issue.id} has been successfully added", "success")
+        flash(f"Item {issue.title} has been successfully added", "success")
 
     issues = Issue.query.all()
 
-    if filter_form.submit.data and filter_form.validate_on_submit():
+    if filter_form.validate_on_submit():
 
         if filter_form.title.data:
             issues_temp = []
@@ -95,8 +95,8 @@ def edit(issue_id):
         if form.validate_on_submit():
             form.populate_obj(db_item)
             db.session.commit()
-            flash(f"Item {issue_id} has been successfully modified", "success")
-            return redirect(url_for('main.home'))
+            flash(f"Issue: {db_item.title} has been successfully modified", "success")
+            return redirect(url_for('issue.issues'))
         return render_template('edit_item.html', issue=db_item, form=form, issue_id=issue_id)
     else:
         return render_template('404.html')
@@ -108,10 +108,10 @@ def delete(issue_id):
     if request.method == "POST":
         db.session.delete(db_item)
         db.session.commit()
-        flash(f'Data has been removed: {db_item.description}.')
-        return redirect(url_for('main.home'))
+        flash(f'Data has been removed: {db_item.title}.','success')
+        return redirect(url_for('issue.issues'))
 
     else:
-        flash('Please confirm deleting the issue.')
+        flash('Please confirm deleting the issue.', 'warning')
 
     return render_template("confirm_delete.html", issue_id=issue_id, issue=db_item)

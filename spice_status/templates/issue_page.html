@@ -2,7 +2,7 @@
 {% from "macros/form_field_macros.html" import render_field %}
 <center> Project status   </center>
 {% block lside %}
-<h3>
+<h3 class="text-center margin">
 Filter Issues:
 </h3>
 
@@ -36,7 +36,7 @@ Filter Issues:
 {% endblock %}
 
 {% block rside %}
-<h3>Create Issue</h3>
+<h3 class="text-center margin">Create Issue:</h3>
 
         {% with form = issue_form %}
             {% with name = form2 %}

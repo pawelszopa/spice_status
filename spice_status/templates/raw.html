@@ -3,15 +3,16 @@
 
 
 {% block content %}
-<article>
+
     <header>
       <center>  <h1>Raw database</h1> </center>
     </header>
-    <section>
-        <div class="col-sm-3 my-4">
+
+        <div class="col-sm-20 my-15">
         <a href="{{ url_for('input.generate')}}" class="btn btn-success">Generate Excel file</a>
         {% if raw_data.count() > 0 %}
-        <table>
+            <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
             <tr>
                 <th>cw</th>
                 <th>total_client_req</th>
@@ -91,39 +92,11 @@
             </tr>
             {% endfor %}
         </table>
-
+            </div>
         {% else %}
         No raw_data yet.
         {% endif %}
 
-        {% if users.count() > 0 %}
-        <hr>
-        <h3>Users</h3>
-
-        <table>
-            <tr>
-                <th>id</th>
-                <th>username</th>
-                <th>email</th>
-                <th>password_hash</th>
-            </tr>
 
 
-            {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.password_hash }}</td>
-            </tr>
-
-            {% endfor %}
-        </table>
-        {% else %}
-        No users yet.
-        {% endif %}
-
-
-    </section>
-</article>
 {% endblock %}
