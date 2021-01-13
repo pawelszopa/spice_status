@@ -40,6 +40,8 @@ def create_app():
 
     login_manager.session_protection = 'strong'
     login_manager.login_view = 'auth.login'
+    login_manager.login_message = "User needs to be logged in to view this page"
+    login_manager.login_message_category = "warning"
     login_manager.init_app(spice_status)
 
     return spice_status

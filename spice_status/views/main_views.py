@@ -1,11 +1,11 @@
-from flask import Blueprint, render_template, flash
-from flask_login import login_required, current_user
+from flask import Blueprint, render_template
+from flask_login import login_required
 
-from ..models.project_models import get_project
-from ..forms.issue_form import IssueForm, FilterForm
-from ..models.issue_models import Issue, get_all_issues
+from ..models.checklist_models import Gate0, Gate1, Gate2, SOP
+from ..models.project_models import Project
+
 from ..models.user_models import User
-from spice_status import login_manager, db
+from spice_status import login_manager
 
 bp_main = Blueprint("main", __name__, url_prefix='/')
 
@@ -15,65 +15,36 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@bp_main.route('/', methods=['GET', 'POST'])
+@bp_main.route('/', methods=['GET'])
 @login_required
 def home():
-    issue_form = IssueForm()
-    filter_form = FilterForm()
+    if Gate0.query.order_by(Gate0.id.desc()).first():
+        gate0 = Gate0.query.order_by(Gate0.id.desc()).first()
+        gate0_values = gate0.__dict__.values()
+        g0_status = 'Green'
+        if 'No' in gate0_values:
+            g0_status = 'Red'
 
-    if issue_form.submit.data and issue_form.validate_on_submit():
-        issue = Issue(
-            date=issue_form.date.data,
-            title=issue_form.title.data,
-            description=issue_form.description.data,
-            status=issue_form.status.data,
-            severity=issue_form.severity.data,
-            spice_process=issue_form.spice_process.data,
-            link='',
-            user_id=current_user.id
-        )
-        db.session.add(issue)
-        db.session.commit()
-        flash(f"Item {Issue.id} has been successfully added", "success")
+    if Gate1.query.order_by(Gate1.id.desc()).first():
+        gate1 = Gate1.query.order_by(Gate1.id.desc()).first()
+        gate1_values = gate1.__dict__.values()
+        g1_status = 'Green'
+        if 'No' in gate1_values:
+            g1_status = 'Red'
 
-    issues = Issue.query.all()
+    if Gate2.query.order_by(Gate2.id.desc()).first():
+        gate2 = Gate2.query.order_by(Gate2.id.desc()).first()
+        gate2_values = gate2.__dict__.values()
+        g2_status = 'Green'
+        if 'No' in gate1_values:
+            g2_status = 'Red'
 
-    if filter_form.submit.data and filter_form.validate_on_submit():
+    if SOP.query.order_by(SOP.id.desc()).first():
+        sop = SOP.query.order_by(SOP.id.desc()).first()
+        sop_values = sop.__dict__.values()
+        sop_status = 'Green'
+        if 'No' in sop_values:
+            sop_status = 'Red'
 
-        if filter_form.title.data:
-            issues_temp = []
-            for issue in issues:
-                if filter_form.title.data in issue.title:
-                    issues_temp.append(issue)
-            issues = issues_temp
-
-        if filter_form.description.data:
-            issues_temp = []
-            for issue in issues:
-                if filter_form.description.data in issue.description:
-                    issues_temp.append(issue)
-            issues = issues_temp
-
-        if filter_form.status.data != 'NA':
-            issues_temp = []
-            for issue in issues:
-                if filter_form.status.data in issue.status:
-                    issues_temp.append(issue)
-            issues = issues_temp
-
-        if filter_form.severity.data != 'NA':
-            issues_temp = []
-            for issue in issues:
-                if filter_form.severity.data in issue.severity:
-                    issues_temp.append(issue)
-            issues = issues_temp
-
-        if filter_form.spice_process.data != 'NA':
-            issues_temp = []
-            for issue in issues:
-                if filter_form.spice_process.data in issue.spice_process:
-                    issues_temp.append(issue)
-            issues = issues_temp
-
-    return render_template('status_page.html', issue_form=issue_form, issues=issues, project=get_project(),
-                           filter_form=filter_form)
+    return render_template('status_page.html', project=Project.get_project(), gate0_values=gate0_values,
+                           g0_status=g0_status, g1_status=g1_status, g2_status=g2_status, sop_status=sop_status)

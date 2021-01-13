@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for, render_template, request
+from flask import Blueprint, url_for, render_template, request, flash
 from flask_login import login_user, logout_user
 from werkzeug.utils import redirect
 
@@ -16,6 +16,7 @@ def signup():
         user = User(email=form.email.data, username=form.username.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
+        flash("Account created in", 'success' )
         return redirect(url_for('auth.login'))
     return render_template('signup.html', form=form)
 
@@ -27,6 +28,7 @@ def login():
         user = User.get_by_username(form.username.data)
         if user is not None and user.check_password(form.password.data):
             login_user(user, form.remember_me.data)
+            flash("Logged in", 'success')
             return redirect(request.args.get("next") or url_for('main.home'))
     return render_template('login.html', form=form)
 
@@ -34,4 +36,5 @@ def login():
 @bp_auth.route('/logout', methods=['GET'])
 def logout():
     logout_user()
+    flash("Logged out", 'success')
     return redirect(url_for('main.home'))

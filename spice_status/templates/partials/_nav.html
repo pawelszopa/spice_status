@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-blue bg-dark">
     <a class="navbar-brand" href="{{ url_for('main.home')}}"><img
             src="{{ url_for('static', filename='images/logo.png') }}" width='50' height='50'></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler btn btn-secondary" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon small">Nav</span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -20,7 +21,7 @@
             </li>
             {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('auth.logout')}}">Logout</a>
+                <a class="nav-link" href="{{ url_for('issue.issues')}}">Issues</a>
             </li>
 
 
@@ -34,18 +35,32 @@
                 <a class="nav-link" href="{{ url_for('input.raw')}}">Raw data</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('project.define_new_project')}}">Create new project</a>
+                <a class="nav-link" href="{{ url_for('project.define_new_project')}}">Project data</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('input.chart')}}">Chart</a>
+                <a class="nav-link" href="{{ url_for('input.chart')}}">Charts</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('checklist.checklist_gate_0')}}">Gate0</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('input.data')}}">data</a>
+                <a class="nav-link" href="{{ url_for('checklist.checklist_gate_1')}}">Gate1</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('checklist.checklist_gate_1')}}">Gate0</a>
+                <a class="nav-link" href="{{ url_for('checklist.checklist_gate_2')}}">Gate2</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('checklist.checklist_gate_1')}}">Gate SOP</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('input.data')}}">JSON Data</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('auth.logout')}}">Logout</a>
+            </li>
+
             {% endif %}
 
 

@@ -1,0 +1,52 @@
+{% extends "partials/_three_column.html" %}
+{% from "macros/form_field_macros.html" import render_field %}
+<center> Project status   </center>
+{% block lside %}
+<h3>
+Filter Issues:
+</h3>
+
+
+
+
+        {% with form = filter_form %}
+         {% include 'partials/_form.html' %}
+
+
+    {% endwith %}
+
+
+
+
+{% endblock %}
+
+
+{% block main_content %}
+    <div class="row my-5 card-wrapper test">
+        {% if issues %}
+            {% for issue in issues  %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        {% include 'partials/_issue_card.html' %}
+                    </div>
+                </div>
+             {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block rside %}
+<h3>Create Issue</h3>
+
+        {% with form = issue_form %}
+            {% with name = form2 %}
+                 {% include 'partials/_form.html' %}
+
+        {% endwith %}
+
+    {% endwith %}
+
+
+
+
+{% endblock %}

@@ -1,60 +1,167 @@
-{% extends "partials/_three_column.html" %}
-{% from "macros/form_field_macros.html" import render_field %}
-<center> Project status   </center>
-{% block lside %}
-<h3>
-Filter Issues:
-</h3>
+{% extends "partials/_one_column.html" %}
+
+
+{% block content %}
+<div id="project">
+<h1 class="text-center margin">Project Name: {{ project.name }}</h1>
+
+    <h3 class="text-center margin">Start Date: {{ project.start_date }} End Date: {{ project.end_date }}</h3>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="row">Gate name</th>
+      <td>Gate0</td>
+      <td>Gate1</td>
+      <td>Gate2</td>
+      <td>SOP</td>
+    </tr>
+    </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Date</th>
+      <td>{{ project.gate_1 }}</td>
+      <td>{{ project.gate_2 }}</td>
+      <td>{{ project.gate_3 }}</td>
+      <td>{{ project.sop }}</td>
+    </tr>
+    <tr>
+      <th scope="row">status</th>
+      <td>{{ g0_status }}</td>
+      <td>{{ g1_status }}</td>
+      <td>{{ g2_status }}</td>
+      <td>{{ sop_status }}</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h2 class="text-center margin">Process rating</h2>
+
+  <table class="table table-hover" >
+  <thead class="thead-dark">
+    <tr>
+      <th scope="row">Process</th>
+
+      <td>Issues rating</td>
+      <td>Metrics rating</td>
+
+    </tr>
+    </thead>
+  <tbody>
+    <tr>
+      <th scope="row">SYS.1</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+    <tr>
+      <th scope="row">SYS.2</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SYS.3</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SYS.4</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SYS.5</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SWE.1</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SWE.2</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SWE.3</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SWE.4</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SWE.5</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SWE.6</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SUP.1</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SUP.8</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SUP.9</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">SUP.10</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">MAN.3</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+  <tr>
+      <th scope="row">MAN.5</th>
+      <td></td>
+      <td></td>
+
+    </tr>
+
+
+  </tbody>
+</table>
 
 
 
 
-        {% with form = filter_form %}
-         {% include 'partials/_form.html' %}
-
-
-    {% endwith %}
-
-
-
-<li>Project Name: {{ project.name }}</li>
-<li>Start Date: {{ project.start_date }}</li>
-<li>End Date: {{ project.end_date }}</li>
-<li>Gate 1: {{ project.gate_1 }}</li>
-<li>Gate 2 {{ project.gate_2 }}</li>
-<li>Gate 3: {{ project.gate_3 }}</li>
-<li>Gate 4: {{ project.gate_4 }}</li>
-<li>Start of production: {{ project.sop }}</li>
-<li>Spice Level: {{ project.spice_level }}</li>
-{% endblock %}
-
-
-{% block main_content %}
-    <div class="row my-5 card-wrapper test">
-        {% if issues %}
-            {% for issue in issues  %}
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        {% include 'partials/_issue_card.html' %}
-                    </div>
-                </div>
-             {% endfor %}
-        {% endif %}
-    </div>
-{% endblock %}
-
-{% block rside %}
-<h3>Create Issue</h3>
-
-        {% with form = issue_form %}
-            {% with name = form2 %}
-         {% include 'partials/_form.html' %}
-
-        {% endwith %}
-
-    {% endwith %}
 
 
 
 
+
+</div>
 {% endblock %}

@@ -6,9 +6,9 @@ from wtforms.validators import DataRequired
 
 
 class Gate0Form(FlaskForm):
-    sw_strategy = SelectField('SW strategy created?', choices=['Not Set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
-    sys_strategy = SelectField('SyS strategy created?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
-    test_strategy = SelectField('test strategy created?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[DataRequired()])
+    sw_strategy = SelectField('SW strategy created?', choices=['Not Set', 'Yes', 'No', 'N/A'], validators=[])
+    sys_strategy = SelectField('SyS strategy created?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[])
+    test_strategy = SelectField('test strategy created?', choices=['Not set', 'Yes', 'No', 'N/A'], validators=[])
     submit = SubmitField('Submit')
 
 

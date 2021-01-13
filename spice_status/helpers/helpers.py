@@ -17,3 +17,6 @@ def save_file_upload(file):
     file_name = secure_filename(file_name)
     file.data.save(os.path.join(uploads_path, file_name))
     return file_name
+
+
+

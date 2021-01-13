@@ -1,14 +1,77 @@
 from flask import Blueprint, flash, url_for, render_template, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from werkzeug.utils import redirect
 
 from ..models.comment_models import Comment
 from .. import db
-from ..forms.issue_form import EditIssueForm
+from ..forms.issue_form import EditIssueForm, IssueForm, FilterForm
 from ..forms.comment_forms import CommentForm
 from ..models.issue_models import get_issue_by_id, Issue
 
 bp_issue = Blueprint("issue", __name__, url_prefix='/issue')
+
+
+@bp_issue.route('/issues', methods=['GET', 'POST'])
+@login_required
+def issues():
+    issue_form = IssueForm()
+    filter_form = FilterForm()
+
+    if issue_form.submit.data and issue_form.validate_on_submit():
+        issue = Issue(
+            date=issue_form.date.data,
+            title=issue_form.title.data,
+            description=issue_form.description.data,
+            status=issue_form.status.data,
+            severity=issue_form.severity.data,
+            spice_process=issue_form.spice_process.data,
+            link='',
+            user_id=current_user.id
+        )
+        db.session.add(issue)
+        db.session.commit()
+        flash(f"Item {Issue.id} has been successfully added", "success")
+
+    issues = Issue.query.all()
+
+    if filter_form.submit.data and filter_form.validate_on_submit():
+
+        if filter_form.title.data:
+            issues_temp = []
+            for issue in issues:
+                if filter_form.title.data in issue.title:
+                    issues_temp.append(issue)
+            issues = issues_temp
+
+        if filter_form.description.data:
+            issues_temp = []
+            for issue in issues:
+                if filter_form.description.data in issue.description:
+                    issues_temp.append(issue)
+            issues = issues_temp
+
+        if filter_form.status.data != 'NA':
+            issues_temp = []
+            for issue in issues:
+                if filter_form.status.data in issue.status:
+                    issues_temp.append(issue)
+            issues = issues_temp
+
+        if filter_form.severity.data != 'NA':
+            issues_temp = []
+            for issue in issues:
+                if filter_form.severity.data in issue.severity:
+                    issues_temp.append(issue)
+            issues = issues_temp
+
+        if filter_form.spice_process.data != 'NA':
+            issues_temp = []
+            for issue in issues:
+                if filter_form.spice_process.data in issue.spice_process:
+                    issues_temp.append(issue)
+            issues = issues_temp
+
+    return render_template('issue_page.html', issue_form=issue_form, issues=issues, filter_form=filter_form)
 
 
 @bp_issue.route('/<int:issue_id>')

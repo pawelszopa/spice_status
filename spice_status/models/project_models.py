@@ -11,9 +11,10 @@ class Project(db.Model):
     gate_3 = db.Column(db.String)
     sop = db.Column(db.String)
     spice_level = db.Column(db.String)
-    risks = db.Column(db.String)
-    low_issues = db.Column(db.String)
-    high_issues = db.Column(db.String)
+
+    @staticmethod
+    def get_project():
+        return Project.query.first()
 
 
 class Documents(db.Model):
@@ -21,10 +22,3 @@ class Documents(db.Model):
     sw_strategy = db.Column(db.String)
     sys_strategy = db.Column(db.String)
     test_strategy = db.Column(db.String)
-
-
-def get_project():
-    return Project.query.first()
-
-
-
