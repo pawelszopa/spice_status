@@ -19,6 +19,10 @@ def load_user(user_id):
 @bp_main.route('/', methods=['GET'])
 @login_required
 def home():
+    g0_status = ''
+    g1_status = ''
+    g2_status = ''
+    sop_status = ''
     if Gate0.query.order_by(Gate0.id.desc()).first():
         gate0 = Gate0.query.order_by(Gate0.id.desc()).first()
         gate0_values = gate0.__dict__.values()
@@ -50,7 +54,7 @@ def home():
     issues = Issue.query.all()
     sys1 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SYS.1':
             sys1 += 1
     if sys1 > 0:
@@ -60,7 +64,7 @@ def home():
 
     sys2 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SYS.2':
             sys2 += 1
     if sys1 > 0:
@@ -70,7 +74,7 @@ def home():
 
     sys3 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SYS.3':
             sys1 += 1
     if sys3 > 0:
@@ -80,7 +84,7 @@ def home():
 
     sys4 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SYS.4':
             sys4 += 1
     if sys4 > 0:
@@ -90,7 +94,7 @@ def home():
 
     sys5 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SYS.5':
             sys5 += 1
     if sys5 > 0:
@@ -100,7 +104,7 @@ def home():
 
     swe1 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SWE.1':
             swe1 += 1
     if swe1 > 0:
@@ -110,7 +114,7 @@ def home():
 
     swe2 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SWE.2':
             swe2 += 1
     if swe2 > 0:
@@ -120,7 +124,7 @@ def home():
 
     swe3 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SWE.3':
             swe3 += 1
     if swe3 > 0:
@@ -130,7 +134,7 @@ def home():
 
     swe4 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SWE.4':
             swe4 += 1
     if swe4 > 0:
@@ -140,7 +144,7 @@ def home():
 
     swe5 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SWE.5':
             swe5 += 1
     if swe5 > 0:
@@ -150,7 +154,7 @@ def home():
 
     swe6 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SWE.6':
             swe6 += 1
     if swe6 > 0:
@@ -160,7 +164,7 @@ def home():
 
     sup1 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SUP.1':
             sup1 += 1
     if sup1 > 0:
@@ -170,7 +174,7 @@ def home():
 
     sup8 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SUP.8':
             sup8 += 1
     if sup8 > 0:
@@ -180,7 +184,7 @@ def home():
 
     sup9 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SUP.9':
             sup9 += 1
     if sup9 > 0:
@@ -190,7 +194,7 @@ def home():
 
     sup10 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'SUP.10':
             sup10 += 1
     if sup10 > 0:
@@ -200,7 +204,7 @@ def home():
 
     man3 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'MAN.3':
             man3 += 1
     if man3 > 0:
@@ -210,7 +214,7 @@ def home():
 
     man5 = 0
     for issue in issues:
-        print(issue.spice_process)
+
         if issue.severity in ['Escalated', "High"] and issue.spice_process == 'MAN.5':
             man5 += 1
     if man5 > 3:
@@ -220,7 +224,6 @@ def home():
 
     return render_template('status_page.html',
                            project=Project.get_project(),
-                           gate0_values=gate0_values,
                            g0_status=g0_status,
                            g1_status=g1_status,
                            g2_status=g2_status,

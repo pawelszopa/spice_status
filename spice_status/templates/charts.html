@@ -1,55 +1,136 @@
-<!DOCTYPE html>
+{% extends "partials/_one_column.html" %}
+{% block content %}
 
-  <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-  </head>
-<body>
+
 <div>
-<h1><center>SHRD</center></h1>
-    <div class="ct-chart ct-perfect-fourth" id="chart1"></div>
-<h1><center>traceability</center></h1>
-    <center><div class="ct-chart ct-perfect-fourth" id="chart2"></div></center>
+    <h1>
+        <center>Customer REQ</center>
+    </h1>
+    <center>
+        <div class="ct-chart ct-perfect-fourth " id="customerREQ" style="height:450px"></div>
+    </center>
+    <h1>
+        <center>System Requirements</center>
+    </h1>
+    <center>
+        <div class="ct-chart ct-perfect-fourth reduce" id="SystemREQ" style="height:450px"></div>
+    </center>
+
+    <h1>
+        <center>Software Requirements</center>
+    </h1>
+    <center>
+        <div class="ct-chart ct-perfect-fourth" id="SoftwareREQ" style="height:450px"></div>
+    </center>
+
+    <h1>
+        <center>Code Quality Misra</center>
+    </h1>
+    <center>
+        <div class="ct-chart ct-perfect-fourth" id="CodeQuality" style="height:450px"></div>
+    </center>
 </div>
+
 
 <script>
 
     var getData = $.get('/metrics/data');
 
     getData.done(function(results) {
-    var data = {
+    var total_client_req = {
 
       labels: results.cw,
 
       series: [{
-        name: 'series-1',
-        data: results.shrd_total},
+        name: 'total_client_req',
+        data: results.total_client_req},
         {
-        name: 'series-2',
-        data: results.shrd_approved
+        name: 'total_client_req_approved',
+        data: results.total_client_req_approved
         }
+
+        ]
+
+    };
+    var misra_mid = {
+
+      labels: results.cw,
+
+      series: [{
+        name: 'misra_mid',
+        data: results.misra_mid},
+        {
+        name: 'misra_high',
+        data: results.misra_high
+        },
+        {
+        name: 'misra_low',
+        data: results.misra_low,
+        }
+
+        ]
+
+    };
+    var SystemREQ = {
+
+      labels: results.cw,
+
+      series: [{
+        name: 'total_sys_req',
+        data: results.total_sys_req},
+        {
+        name: 'total_sys_req_approved',
+        data: results.total_sys_req_approved
+        },
+        {
+        name: 'total_sys_req_implemented',
+        data: results.total_sys_req_implemented,
+        }
+
+        ]
+
+    };
+    var SoftwareREQ = {
+
+      labels: results.cw,
+
+      series: [{
+        name: 'total_sw_req',
+        data: results.total_sw_req},
+        {
+        name: 'total_sw_req_approved',
+        data: results.total_sw_req_approved
+        },
+        {
+        name: 'total_sw_req_implemented',
+        data: results.total_sw_req_implemented,
+        }
+
         ]
 
     };
 
+
+
     var options = {
 
-    height: 400
-    }
+        height: 400
 
 
-    var myChart = new Chartist.Line('#chart1', data, options);
+        };
 
-    var myChart = new Chartist.Line('#chart2', data, options);
+
+
+    var myChart = new Chartist.Line('#customerREQ', total_client_req, options);
+    var myChart = new Chartist.Line('#CodeQuality', misra_mid, options);
+    var myChart = new Chartist.Line('#SystemREQ', SystemREQ, options);
+    var myChart = new Chartist.Line('#SoftwareREQ', SoftwareREQ, options);
 });
+
+
+
 
 </script>
 
 
-
-
-
-
-</body>
-</html>
+{% endblock %}

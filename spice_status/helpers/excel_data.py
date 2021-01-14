@@ -19,7 +19,7 @@ def excel_data(id_min, id_max, row_range=35):
                     cw_field = cell.coordinate
                     cords.append(cw_field)
 
-    print(cords)
+
     cords_letters = []
     for item in cords:
         for _ in item:

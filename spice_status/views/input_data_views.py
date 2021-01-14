@@ -131,28 +131,125 @@ def chart():
     return render_template('charts.html')
 
 
+@bp_input.route('/google/charts')
+def google_chart():
+    return render_template('charts_google.html')
+
+
 @bp_input.route('/data')
 def data():
     cw = []
-    shrd_total = []
-    shrd_approved = []
+    total_client_req = []
+    total_client_req_approved = []
+    total_open_issue_client_req = []
+    total_sys_req = []
+    total_sys_req_approved = []
+    total_sys_req_implemented = []
+    total_sw_req = []
+    total_sw_req_approved = []
+    total_sw_req_implemented = []
+    ccm_more_50 = []
+    ccm_24_50 = []
+    ccm_12_24 = []
+    misra_high = []
+    misra_mid = []
+    misra_low = []
+    branch_coverage = []
+    line_coverage = []
+    mc_dc_coverage = []
+    total_sw_req_tests = []
+    total_sw_req_passed = []
+    total_sys_req_tests = []
+    total_sys_req_tests_passed = []
+    traceability_sys_client = []
+    traceability_client_sys = []
+    traceability_sys_sw = []
+    traceability_sw_sys = []
+    total_features = []
+    total_bugs = []
+    total_bugs_solved = []
+    total_problems = []
+    total_problems_solved = []
+    total_change_requests = []
+    change_request_not_reviewed = []
+
     data = Workbook.all_of_workbooks()
     for row in data[::-1]:
         cw.append(row.cw)
-    for row in data[::-1]:
-        shrd_total.append(row.total_client_req)
-    for row in data[::-1]:
-        shrd_approved.append(row.total_client_req_approved)
+        total_client_req.append(row.total_client_req)
+        total_change_requests.append(row.total_change_requests)
+        change_request_not_reviewed.append(row.change_request_not_reviewed)
+        traceability_sys_client.append(row.traceability_sys_client)
+        traceability_sw_sys.append(row.traceability_sw_sys)
+        total_features.append(row.total_features)
+        total_bugs.append(row.total_bugs)
+        total_bugs_solved.append(row.total_bugs_solved)
+        total_problems.append(row.total_problems)
+        total_problems_solved.append(row.total_problems_solved)
+        traceability_client_sys.append(row.traceability_client_sys)
+        traceability_sys_sw.append(row.traceability_sys_sw)
+        total_sw_req_tests.append(row.total_sw_req_tests)
+        total_sw_req_passed.append(row.total_sw_req_passed)
+        total_sys_req_tests.append(row.total_sys_req_tests)
+        total_sys_req_tests_passed.append(row.total_sys_req_tests_passed)
+        branch_coverage.append(row.branch_coverage)
+        line_coverage.append(row.line_coverage)
+        mc_dc_coverage.append(row.mc_dc_coverage)
+        total_client_req_approved.append(row.total_client_req_approved)
+        total_open_issue_client_req.append(row.total_open_issue_client_req)
+        total_sys_req.append(row.total_sys_req)
+        total_sys_req_implemented.append(row.total_sys_req_implemented)
+        total_sw_req.append(row.total_sw_req)
+        total_sys_req_approved.append(row.total_sys_req_approved)
+        total_sw_req_approved.append(row.total_sw_req_approved)
+        total_sw_req_implemented.append(row.total_sw_req_implemented)
+        ccm_more_50.append(row.ccm_more_50)
+        ccm_24_50.append(row.ccm_24_50)
+        ccm_12_24.append(row.ccm_12_24)
+        misra_high.append(row.misra_high)
+        misra_mid.append(row.misra_mid)
+        misra_low.append(row.misra_low)
 
     return jsonify(
         {'cw': cw,
-         'shrd_total': shrd_total,
-         'shrd_approved': shrd_approved})
+         'total_client_req': total_client_req,
+         'total_change_requests': total_change_requests,
+         'change_request_not_reviewed': change_request_not_reviewed,
+         'traceability_sys_client': traceability_sys_client,
+         'traceability_sw_sys': traceability_sw_sys,
+         'total_features': total_features,
+         'total_bugs': total_bugs,
+         'total_bugs_solved': total_bugs_solved,
+         'total_problems': total_problems,
+         'total_problems_solved': total_problems_solved,
+         'traceability_client_sys': traceability_client_sys,
+         'traceability_sys_sw': traceability_sys_sw,
+         'total_sw_req_tests': total_sw_req_tests,
+         'total_sw_req_passed': total_sw_req_passed,
+         'total_sys_req_tests': total_sys_req_tests,
+         'total_sys_req_tests_passed': total_sys_req_tests_passed,
+         'branch_coverage': branch_coverage,
+         'line_coverage': line_coverage,
+         'mc_dc_coverage': mc_dc_coverage,
+         'total_sw_req_approved': total_sw_req_approved,
+         'total_client_req_approved': total_client_req_approved,
+         'total_open_issue_client_req': total_open_issue_client_req,
+         'total_sys_req': total_sys_req,
+         'total_sys_req_implemented': total_sys_req_implemented,
+         'total_sw_req': total_sw_req,
+         'total_sys_req_approved': total_sys_req_approved,
+         'total_sw_req_implemented': total_sw_req_implemented,
+         'ccm_more_50': ccm_more_50,
+         'ccm_24_50': ccm_24_50,
+         'ccm_12_24': ccm_12_24,
+         'misra_high': misra_high,
+         'misra_mid': misra_mid,
+         'misra_low': misra_low,
+         })
 
 
 @bp_input.route('/generate')
 def generate():
-
     raw_data = Workbook.query.all()
 
     filename = os.path.join(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', 'uploads'), 'excel.xlsx')
@@ -223,5 +320,5 @@ def charts():
     data = [{'Task': 'Hours per Day', 'Work': 11, 'Eat': 2, 'Commute': 2, 'Watching TV': 2, 'Sleeping': 7},
             {'Work': 12, 'Eat': 4, 'Commute': 5, 'Watching TV': 8, 'Sleeping': 9}]
 
-    return render_template('charts_google_try.html', raw_data=Workbook.all_of_workbooks(), shrd=shrd, datas=data)
+    return render_template('charts_google.html', raw_data=Workbook.all_of_workbooks(), shrd=shrd, datas=data)
 '''

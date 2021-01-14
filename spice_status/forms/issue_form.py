@@ -47,5 +47,5 @@ class FilterForm(FlaskForm):
                                                     'SWE.2', 'SWE.3',
                                                     'SWE.4', 'SWE.5', 'SWE.6', 'SUP.1', 'SUP.8', 'SUP.9',
                                                     'SUP.10', 'MAN.3',
-                                                    'MAN.5'], default='NA')
+                                                    'MAN.5','NA'], default='NA')
     submit = SubmitField("Filter")
