@@ -1,0 +1,41 @@
+{% extends "partials/_one_column.html" %}
+
+{% block content %}
+<div class="margin">
+    <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.user')}}" role="button">Users</a>
+    </div>
+    <div class="margin">
+        <a class="btn btn-primary btn-lg " href="{{url_for('admin.project')}}" role="button">Projects</a>
+    </div>
+       <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.workbook')}}" role="button">Workbooks</a>
+    </div>
+    <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.checklist0')}}" role="button">Checklist Gate 0</a>
+    </div>
+    <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.checklist1')}}" role="button">Checklist Gate 1</a>
+    </div>
+    <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.checklist2')}}" role="button">Checklist Gate 2</a>
+    </div>
+    <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.checklistSOP')}}" role="button">Checklist Gate SOP</a>
+    </div>
+    <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.issue')}}" role="button">Issues</a>
+    </div>
+    <div class="margin">
+        <a class="btn btn-primary btn-lg" href="{{url_for('admin.comment')}}" role="button">Comments</a>
+    </div>
+
+
+
+
+
+
+
+
+</div>
+{% endblock %}

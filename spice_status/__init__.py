@@ -27,8 +27,11 @@ def create_app():
     from .views import bp_checklist
     from .views import bp_issue
     from .views import bp_comment
+    from .views import bp_admin
+
     spice_status.register_blueprint(bp_checklist)
     spice_status.register_blueprint(bp_main)
+    spice_status.register_blueprint(bp_admin, url_prefix='/admin')
 
     spice_status.register_blueprint(bp_auth)
     spice_status.register_blueprint(bp_input)
