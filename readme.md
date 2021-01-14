@@ -11,14 +11,14 @@ To run app:
 
 
 to access admin view:
-in terminal (on working app)
-flask shell
-from spice_status.models.user_models import User
-from spice_status import db
-user = User.query.filter_by(username={ YOUR_USERNAME ).first()
-user.is_admin = True
-db.session.commit()
-exit()
+1. in terminal (on working app) after register
+2. flask shell
+3. from spice_status.models.user_models import User
+4. from spice_status import db
+5. user = User.query.filter_by(username={ YOUR_USERNAME ).first()
+6. user.is_admin = True
+7. db.session.commit()
+8. exit()
  
  You have granted yourself a admin. You can see check admin views (navbar)
  
